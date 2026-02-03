@@ -1,5 +1,5 @@
 ﻿# Déclaration des images
-image bg japanStreet = "images/japanStreet.jpg"
+image bg japanStreet = "images/japanStreet.png"
 image j happy = "images/judah_happy.png"
 
 # Déclaration des personnages
@@ -17,8 +17,8 @@ label start:
 
     menu:
         "Je vous aime":
-            s "Oh… <3"
+            j "Oh… <3"
         "Vous êtes trop cool":
-            s "Yaaay !"
+            j "Yaaay !"
 
     return
