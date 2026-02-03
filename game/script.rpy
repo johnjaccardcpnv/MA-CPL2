@@ -59,13 +59,13 @@ label scene_1b:
     n "Tu te prépares en vitesse."
 
     scene bg hallway:
-        zoom 2.5
+        zoom 3
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street:
-        zoom 2.5
+        zoom 2
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
     jump suite_normale
@@ -95,12 +95,12 @@ label scene_2c_b2:
     n "Tu prends un bon croissant des familles pour le trajet."
 
     scene bg hallway:
-        zoom 1
+        zoom 3
     n "En sortant de chez toi à 8h55, tu croises quelqu’un d’étrange dans le couloir de ton étage."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street:
-        zoom 1
+        zoom 2
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
     jump suite_normale
@@ -135,13 +135,13 @@ label scene_2c_b1:
     n "Tu t’habilles vite avec les premiers trucs que tu vois et files par la porte."
 
     scene bg hallway:
-        zoom 1
+        zoom 3
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street:
-        zoom 1
+        zoom 2
     n "Tu continues jusqu’à ta destination (enfin on espère)."
     n "### Il pue et il a faim ###"
 
