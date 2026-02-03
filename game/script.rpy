@@ -43,7 +43,7 @@ label scene_1a:
     n "Direction la salle de bain pour la douche."
 
     scene bg bathroom:
-        zoom 2.5
+        zoom 1
     n "Tu te précipites dans la salle de bain."
     n "La journée commence mal… mais au moins tu es debout."
 
@@ -95,12 +95,12 @@ label scene_2c_b2:
     n "Tu prends un bon croissant des familles pour le trajet."
 
     scene bg hallway:
-        zoom 2.5
+        zoom 1
     n "En sortant de chez toi à 8h55, tu croises quelqu’un d’étrange dans le couloir de ton étage."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street:
-        zoom 2.5
+        zoom 1
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
     jump suite_normale
@@ -109,7 +109,7 @@ label scene_2c_b2:
 label scene_2c_b3:
 
     scene bg bathroom:
-        zoom 2.5
+        zoom 1
     n "Tu décides finalement de bouger ton cul et prendre une douche."
     n "Pendant ta douche cramante, tu entends un bruit bizarre."
     n "Cependant tu décides de l’ignorer car ce sont peut-être les voisins et leur sport du matin…"
@@ -135,13 +135,13 @@ label scene_2c_b1:
     n "Tu t’habilles vite avec les premiers trucs que tu vois et files par la porte."
 
     scene bg hallway:
-        zoom 2.5
+        zoom 1
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street:
-        zoom 2.5
+        zoom 1
     n "Tu continues jusqu’à ta destination (enfin on espère)."
     n "### Il pue et il a faim ###"
 

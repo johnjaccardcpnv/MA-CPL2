@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 111: scene statement expects a non-empty block.
+    scene bg bathroom:
+                      ^
+
+Ren'Py Version: Ren'Py 8.5.2.26010301
+Tue Feb  3 15:10:55 2026
