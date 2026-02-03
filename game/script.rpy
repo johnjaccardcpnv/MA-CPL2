@@ -1,17 +1,19 @@
 ﻿# Déclaration des personnages
 define r = Character("Ren", color="#c8ffc8", what_prefix="“", what_suffix="”")
 define n = Character("Narrateur")  # narrateur
+image r happy = "images/judah_happy.png"
 
 # Images (optionnel – à adapter si tu en as)
 image bg bedroom = "images/bedroom.jpg"
 image bg hallway = "images/hallway.jpg"
 image bg bathroom = "images/bathroom.jpg"
-image bg street = "images/street.jpg"
+image bg street = "images/street.png"
 image bg black = Solid("#000")
 
 label start:
 
-    scene bg bedroom
+    scene bg bedroom:
+        zoom 2.5
     play music "music/morning.ogg"
 
     n "7h43."
@@ -22,7 +24,7 @@ label start:
     n "3 notifications."
     n "Ton estomac gargouille."
     n "Un sentiment étrange t’envahit :"
-    n "👉 tu es en retard… quelque part."
+    n "tu es en retard… quelque part."
 
     menu:
         "Te lever immédiatement":
@@ -38,9 +40,10 @@ label scene_1a:
     n "Tu te lèves d’un bond."
     n "Ton pied rencontre un objet non identifié (probablement un LEGO)."
     n "Tu cries intérieurement."
-    n "👉 Direction la salle de bain pour la douche."
+    n "Direction la salle de bain pour la douche."
 
-    scene bg bathroom
+    scene bg bathroom:
+        zoom 2.5
     n "Tu te précipites dans la salle de bain."
     n "La journée commence mal… mais au moins tu es debout."
 
@@ -55,12 +58,14 @@ label scene_1b:
     n "Finalement tu te réveilles à 8h."
     n "Tu te prépares en vitesse."
 
-    scene bg hallway
+    scene bg hallway:
+        zoom 2.5
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
-    scene bg street
+    scene bg street:
+        zoom 2.5
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
     jump suite_normale
@@ -89,11 +94,13 @@ label scene_2c_b2:
     n "Tu décides de ne pas te doucher."
     n "Tu prends un bon croissant des familles pour le trajet."
 
-    scene bg hallway
+    scene bg hallway:
+        zoom 2.5
     n "En sortant de chez toi à 8h55, tu croises quelqu’un d’étrange dans le couloir de ton étage."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
-    scene bg street
+    scene bg street:
+        zoom 2.5
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
     jump suite_normale
@@ -101,7 +108,8 @@ label scene_2c_b2:
 # --- SCÈNE 2C B3 (DEAD) ---
 label scene_2c_b3:
 
-    scene bg bathroom
+    scene bg bathroom:
+        zoom 2.5
     n "Tu décides finalement de bouger ton cul et prendre une douche."
     n "Pendant ta douche cramante, tu entends un bruit bizarre."
     n "Cependant tu décides de l’ignorer car ce sont peut-être les voisins et leur sport du matin…"
@@ -126,12 +134,14 @@ label scene_2c_b1:
     n "Tu te lèves en panique car tu remarques ton retard (bien joué)."
     n "Tu t’habilles vite avec les premiers trucs que tu vois et files par la porte."
 
-    scene bg hallway
+    scene bg hallway:
+        zoom 2.5
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
-    scene bg street
+    scene bg street:
+        zoom 2.5
     n "Tu continues jusqu’à ta destination (enfin on espère)."
     n "### Il pue et il a faim ###"
 
