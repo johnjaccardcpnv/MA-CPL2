@@ -1,26 +1,24 @@
-﻿# Vous pouvez placer le script de votre jeu dans ce fichier.
+﻿# Déclaration des images
+image bg japanStreet = "images/japanStreet.jpg"
+image j happy = "images/judah_happy.png"
 
-# Déclarez sous cette ligne les images, avec l'instruction 'image'
-# ex: image eileen heureuse = "eileen_heureuse.png"
-
-# Déclarez les personnages utilisés dans le jeu.
-define j = Character('Judah', color="#c8ffc8")
-
+# Déclaration des personnages
+define j = Character("Judah", color="#c8ffc8")
 
 # Le jeu commence ici
 label start:
 
-    scene bg classroom
+    scene bg japanStreet
     play music "music/theme.ogg"
 
-    show j happy
+    show j happy at center
 
-    j "Coucou les copains et les copines c'est joudah."
+    j "Coucou les copains et les copines, c'est Judah."
 
     menu:
-        "Je vous baise":
-            j "Yaaay !"
         "Je vous aime":
-            j "Oh… <3"
+            s "Oh… <3"
+        "Vous êtes trop cool":
+            s "Yaaay !"
 
     return
