@@ -8,12 +8,12 @@ define j = Character("Judah", color="#c8ffc8")
 # Le jeu commence ici
 label start:
 
-    scene bg japanStreet
+    scene bg japanStreet:
         zoom 1.5
 
     play music "music/theme.ogg"
 
-    show j happy at center
+    show j happy at center:
         zoom 0.5
 
     j "Coucou les copains et les copines, c'est Judah."
