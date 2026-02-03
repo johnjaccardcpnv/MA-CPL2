@@ -1,3 +1,8 @@
 /game/cache
 /game/saves
 log.txt
+game/cache/bytecode-312.rpyb
+game/cache/py3analysis.rpyb
+game/saves/navigation.json
+game/saves/persistent
+traceback.txt
