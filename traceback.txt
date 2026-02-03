@@ -1,46 +1,115 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-NameError: name 's' is not defined
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "game/script.rpy", line 22, in script
-    s "Yaaay !"
-Exception: Sayer 's' is not defined.
+  File "game/screens.rpy", line 592, in execute
+    screen save():
+  File "game/screens.rpy", line 592, in execute
+    screen save():
+  File "game/screens.rpy", line 596, in execute
+    use file_slots(_("Sauvegarde"))
+  File "game/screens.rpy", line 606, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 606, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 610, in execute
+    use game_menu(title):
+  File "game/screens.rpy", line 420, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 420, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 424, in execute
+    if main_menu:
+  File "game/screens.rpy", line 427, in execute
+    add gui.game_menu_background
+  File "game/screens.rpy", line 427, in <module>
+    add gui.game_menu_background
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'StoreModule' object has no attribute 'game_menu_background'. Did you mean: 'main_menu_background'?
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/ast.py", line 625, in eval_who
-    return renpy.python.py_eval(who)
-           ~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "renpy/common/00gamemenu.rpy", line 174, in script
+    $ ui.interact()
+  File "renpy/ast.py", line 1187, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1273, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/00gamemenu.rpy", line 174, in <module>
+    $ ui.interact()
+      ~~~~~~~~~~~^^
+  File "renpy/ui.py", line 306, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 2154, in interact
+    repeat, rv = self.interact_core(
+                 ~~~~~~~~~~~~~~~~~~^
+        preloads=preloads,
+        ^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "renpy/display/core.py", line 2700, in interact_core
+    root_widget.visit_all(lambda d: d.per_interact())
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "renpy/display/displayable.py", line 457, in visit_all
+    d.visit_all(callback, seen)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+[Previous line repeated 1 more time]
+  File "renpy/display/screen.py", line 503, in visit_all
+    callback(self)
+    ~~~~~~~~^^^^^^
+  File "renpy/display/core.py", line 2700, in <lambda>
+    root_widget.visit_all(lambda d: d.per_interact())
+                                    ~~~~~~~~~~~~~~^^ 
+  File "renpy/display/screen.py", line 514, in per_interact
+    self.update()
+    ~~~~~~~~~~~^^
+  File "renpy/display/screen.py", line 715, in update
+    self.screen.function(**self.scope)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "game/screens.rpy", line 592, in execute
+    screen save():
+  File "game/screens.rpy", line 592, in execute
+    screen save():
+  File "game/screens.rpy", line 596, in execute
+    use file_slots(_("Sauvegarde"))
+  File "game/screens.rpy", line 606, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 606, in execute
+    screen file_slots(title):
+  File "game/screens.rpy", line 610, in execute
+    use game_menu(title):
+  File "game/screens.rpy", line 420, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 420, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+  File "game/screens.rpy", line 424, in execute
+    if main_menu:
+  File "game/screens.rpy", line 427, in execute
+    add gui.game_menu_background
   File "renpy/python.py", line 1305, in py_eval
     return py_eval_bytecode(code, globals, locals)
            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1298, in py_eval_bytecode
     return eval(bytecode, globals, locals)
            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<none>", line 1, in <module>
-NameError: name 's' is not defined
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "game/script.rpy", line 22, in script
-    s "Yaaay !"
-  File "renpy/ast.py", line 2925, in execute
-    Say.execute(self)
-    ~~~~~~~~~~~^^^^^^
-  File "renpy/ast.py", line 956, in execute
-    who = eval_who(self.who, self.who_fast)
-          ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ast.py", line 627, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 's' is not defined.
+  File "game/screens.rpy", line 427, in <module>
+    add gui.game_menu_background
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'StoreModule' object has no attribute 'game_menu_background'. Did you mean: 'main_menu_background'?
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.5.2.26010301
 MA_CPL2 1.0
-Tue Feb  3 13:58:00 2026
+Tue Feb  3 14:19:40 2026
