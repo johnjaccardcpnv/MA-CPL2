@@ -2,6 +2,7 @@
 define r = Character("Ren", color="#c8ffc8", what_prefix="“", what_suffix="”")
 define n = Character("Narrateur")  # narrateur
 image r happy = "images/ren_happy.png"
+image r ok = "images/ren_happy.png"
 
 # Images (optionnel – à adapter si tu en as)
 image bg bedroom = "images/bedroom.jpg"
@@ -17,6 +18,9 @@ label start:
     play music "music/morning.ogg"
 
     show r happy at left :
+        zoom 2.5
+
+    show r ok at right :
         zoom 2.5
 
     n "7h43."
