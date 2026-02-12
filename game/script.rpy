@@ -11,6 +11,12 @@ image bg street = "images/street.png"
 image bg black = Solid("#000")
 
 label start:
+
+    scene black
+    with fade
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/introduction_long.webm")  
+
     scene bg bedroom
         
     play music "music/morning.ogg"
@@ -145,7 +151,7 @@ label scene_2c_b1:
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street
-    
+
     n "Tu continues jusqu’à ta destination (enfin on espère)."
     n "### Il pue et il a faim ###"
 

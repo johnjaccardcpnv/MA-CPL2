@@ -15,7 +15,7 @@
 ##
 ## La chaîne de caractère contenu dans _() est éligible à la traduction.
 
-define config.name = _("MA_CPL2")
+define config.name = _("MA-CPL2")
 
 
 ## Détermine si le titre renseigné plus haut est affiché sur l'écran du menu
@@ -76,7 +76,6 @@ define config.has_voice = True
 ## utilisée.
 
 ## À l’entrée ou à la sortie du menu du jeu.
-
 define config.enter_transition = dissolve
 define config.exit_transition = dissolve
 
