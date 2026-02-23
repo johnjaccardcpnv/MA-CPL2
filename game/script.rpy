@@ -2,6 +2,7 @@
 define r = Character("Ren", color="#c8ffc8", what_prefix="“", what_suffix="”")
 define n = Character("Narrateur")  # narrateur
 image r happy = "images/ren_happy.png"
+image r tel = "images/ren_tel.png"
 
 # Images (optionnel – à adapter si tu en as)
 image bg bedroom = "images/bedroom.jpg"
@@ -9,6 +10,11 @@ image bg hallway = "images/hallway.jpg"
 image bg bathroom = "images/bathroom.jpg"
 image bg street = "images/street.png"
 image bg black = Solid("#000")
+
+transform ren_left:
+    xalign 0.0
+    yalign 1.0
+    zoom 2.5
 
 label start:
 
@@ -19,10 +25,9 @@ label start:
 
     scene bg bedroom
         
-    play music "music/morning.ogg"
+    play music "musics/mii.mp3" fadein 1.0
 
-    show r happy at left :
-        zoom 2.5
+    show r happy at ren_left
 
     n "7h43."
     n "Ton réveil n’a pas sonné."
@@ -47,12 +52,16 @@ label start:
 # --- SCÈNE 1A ---
 label scene_1a:
 
+    show r happy at ren_left
+
     n "Tu te lèves d’un bond."
     n "Ton pied rencontre un objet non identifié (probablement un LEGO)."
     n "Tu cries intérieurement."
     n "Direction la salle de bain pour la douche."
 
     scene bg bathroom
+
+    show r happy at ren_left
 
     n "Tu te précipites dans la salle de bain."
     n "La journée commence mal… mais au moins tu es debout."
@@ -62,6 +71,8 @@ label scene_1a:
 # --- SCÈNE 1B ---
 label scene_1b:
 
+    show r happy at ren_left
+
     n "Tu décides de rester encore « 2 minutes » en te disant « chill j’ai le temps »."
     n "Tu te redors."
 
@@ -70,11 +81,15 @@ label scene_1b:
 
     scene bg hallway
 
+    show r happy at ren_left
+
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street
+
+    show r happy at ren_left
 
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
@@ -82,6 +97,9 @@ label scene_1b:
 
 # --- SCÈNE 1C ---
 label scene_1c:
+
+    show r tel at left:
+        zoom 1.5
 
     n "Tu ouvres ton téléphone."
     n "Une vidéo."
@@ -101,15 +119,21 @@ label scene_1c:
 # --- SCÈNE 2C B2 ---
 label scene_2c_b2:
 
+    show r happy at ren_left
+
     n "Tu décides de ne pas te doucher."
     n "Tu prends un bon croissant des familles pour le trajet."
 
     scene bg hallway
 
+    show r happy at ren_left
+
     n "En sortant de chez toi à 8h55, tu croises quelqu’un d’étrange dans le couloir de ton étage."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street
+
+    show r happy at ren_left
 
     n "Tu continues jusqu’à ta destination (enfin on espère)."
 
@@ -119,6 +143,8 @@ label scene_2c_b2:
 label scene_2c_b3:
 
     scene bg bathroom
+
+    show r happy at ren_left
 
     n "Tu décides finalement de bouger ton cul et prendre une douche."
     n "Pendant ta douche cramante, tu entends un bruit bizarre."
@@ -141,16 +167,22 @@ label scene_2c_b3:
 # --- SCÈNE 2C B1 ---
 label scene_2c_b1:
 
+    show r happy at ren_left
+
     n "Tu te lèves en panique car tu remarques ton retard (bien joué)."
     n "Tu t’habilles vite avec les premiers trucs que tu vois et files par la porte."
 
     scene bg hallway
+
+    show r happy at ren_left
 
     n "Tu sors de chez toi à 8h50."
     n "Tu croises quelqu’un d’étrange devant chez toi."
     n "Il te lance un regard de SDF mais tu décides de l’ignorer."
 
     scene bg street
+
+    show r happy at ren_left5
 
     n "Tu continues jusqu’à ta destination (enfin on espère)."
     n "### Il pue et il a faim ###"
