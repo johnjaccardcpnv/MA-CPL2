@@ -3,6 +3,7 @@ define r = Character("Ren", color="#c8ffc8", what_prefix="“", what_suffix="”
 define n = Character("Narrateur")  # narrateur
 image r happy = "images/ren_happy.png"
 image r tel = "images/ren_tel.png"
+image r savon = "images/ren_savon.png"
 
 # Images (optionnel – à adapter si tu en as)
 image bg bedroom = "images/bedroom.jpg"
@@ -61,7 +62,7 @@ label scene_1a:
 
     scene bg bathroom
 
-    show r happy at ren_left
+    show r savon at ren_left
 
     n "Tu te précipites dans la salle de bain."
     n "La journée commence mal… mais au moins tu es debout."
@@ -98,8 +99,7 @@ label scene_1b:
 # --- SCÈNE 1C ---
 label scene_1c:
 
-    show r tel at left:
-        zoom 1.5
+    show r tel at ren_left
 
     n "Tu ouvres ton téléphone."
     n "Une vidéo."
@@ -144,7 +144,7 @@ label scene_2c_b3:
 
     scene bg bathroom
 
-    show r happy at ren_left
+    show r savon at ren_left
 
     n "Tu décides finalement de bouger ton cul et prendre une douche."
     n "Pendant ta douche cramante, tu entends un bruit bizarre."
