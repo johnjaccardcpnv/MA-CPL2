@@ -238,6 +238,16 @@ label bureau_normal:
     n "Tâches monotones."
     n "Vue par la fenêtre."
 
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+
+    n "C’est un matin comme les autres pour Ren."
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/patron_tombe.webm")  
+    # Ren’Py attend la fin de la vidéo automatiquement
+
+
     n "Ton patron tombe avec sa chaise près de la vitre."
     n "Les collègues crient."
     n "Tu souris intérieurement."
@@ -295,7 +305,15 @@ label mort_vaporise:
 
     n "l'homme au téléphone te vaporise."
 
-    scene bg black
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+
+    n "C’est un matin comme les autres pour Ren."
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/vaporisated_ren.webm")  
+    # Ren’Py attend la fin de la vidéo automatiquement
+
     centered "{size=60}{color=#ff0000}DEAD{/color}{/size}"
 
     return
