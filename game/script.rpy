@@ -242,11 +242,12 @@ label bureau_normal:
     scene black
     with fade
 
-    n "C’est un matin comme les autres pour Ren."
     # --- Lecture de la vidéo plein écran ---
     $ renpy.movie_cutscene("videos/patron_tombe.webm")  
     # Ren’Py attend la fin de la vidéo automatiquement
-
+    
+    scene bg office
+    show r happy at ren_left
 
     n "Ton patron tombe avec sa chaise près de la vitre."
     n "Les collègues crient."
@@ -309,7 +310,6 @@ label mort_vaporise:
     scene black
     with fade
 
-    n "C’est un matin comme les autres pour Ren."
     # --- Lecture de la vidéo plein écran ---
     $ renpy.movie_cutscene("videos/vaporisated_ren.webm")  
     # Ren’Py attend la fin de la vidéo automatiquement
