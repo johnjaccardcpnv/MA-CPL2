@@ -2,13 +2,22 @@
 # DÉCLARATIONS
 # =========================================================
 
-define r = Character("Ren", color="#c8ffc8", what_prefix="“", what_suffix="”")
+define r = Character("Ren", color="#2a109c", what_prefix="“", what_suffix="”")
+define t = Character("Réceptionniste", color="#fc00e7")
+define j = Character("Jackson", color="#f707e3")
+define m = Character("Homme aux toilette", color="#b94f08")
 define n = Character("Narrateur")
 
 # Sprites
 image r happy = "images/ren_happy.png"
 image r tel = "images/ren_tel.png"
 image r savon = "images/ren_savon.png"
+
+image t normal = "images/receptionniste.png"
+
+image j normal = "images/jackson.png"
+
+image m normal = "images/toiletteman.png"
 
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
@@ -21,11 +30,33 @@ image bg toilet = "images/toillet.png"
 image bg hallway_toilet = "images/toillet_hallway.png"
 image bg black = Solid("#000")
 
-transform ren_left:
+
+
+transform left_zoomed:
     xalign 0.0
     yalign 1.0
     zoom 2.5
 
+transform left_unzoomed:
+    xalign 0.0
+    yalign 1.0
+    zoom 2
+
+
+transform right_zoomed:
+    xalign 1.0
+    yalign 1.0
+    zoom 2.5
+
+transform right_unzoomed:
+    xalign 1.0
+    yalign 1.0
+    zoom 2
+
+transform midright:
+    xalign 0.7
+    yalign 1.0
+    zoom 2
 
 # =========================================================
 # START
@@ -41,7 +72,7 @@ label start:
     play music "musics/mii.mp3" fadein 1.0
 
     scene bg bedroom
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "7h43."
     n "Ton réveil n’a pas sonné."
@@ -73,7 +104,7 @@ label scene_1a:
     n "Direction la salle de bain."
 
     scene bg bathroom
-    show r savon at ren_left
+    show r savon at left_zoomed
 
     n "Douche rapide."
     n "Tu pars travailler."
@@ -93,7 +124,7 @@ label scene_1b:
     n "Préparation express."
 
     scene bg street
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "8h50."
     n "Personne étrange devant chez toi."
@@ -109,7 +140,7 @@ label scene_1b:
 
 label scene_1c:
 
-    show r tel at ren_left
+    show r tel at left_zoomed
 
     n "Une vidéo."
     n "Puis une autre."
@@ -133,14 +164,21 @@ label scene_1c:
 label scene_b3:
 
     scene bg bathroom
-    show r savon at ren_left
+    show r savon at left_unzoomed
 
     n "Tu prends une douche."
     n "Bruit étrange."
     n "Tu ignores."
 
     n "La porte s’ouvre."
+
+    show j normal at right_unzoomed
+    with moveinright
+
     n "Un homme cagoulé et armé entre."
+
+
+
     n "Tu glisses."
     n "Trop tard."
 
@@ -160,7 +198,7 @@ label scene_b2:
     n "Croissant stratégique."
 
     scene bg hallway
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "8h55."
     n "Personne étrange dans le couloir."
@@ -179,11 +217,15 @@ label scene_b1:
     n "Tu files dehors."
 
     scene bg reception
-    show r happy at ren_left
+    show r happy at left_unzoomed
+  
+    
 
     n "Tu arrives au travail."
+    show t normal at right_unzoomed
+    with moveinright
     n "La réceptionniste fronce les sourcils."
-    n "« On n’emploie pas des SDFs ici. »"
+    t "On n’emploie pas des SDFs ici. "
 
     menu:
         "Aller aux toilettes te soigner":
@@ -199,7 +241,12 @@ label scene_b1:
 label arrive_travail_normal:
 
     scene bg reception
-    show r happy at ren_left
+    show r happy at left_unzoomed
+    with moveinleft
+
+    show t normal at right_unzoomed
+    with moveinright
+    
 
     n "Tu arrives à la réception."
     n "Une réceptionniste te fait un clin d’œil."
@@ -214,7 +261,7 @@ label arrive_travail_normal:
 label arrive_travail_blessure:
 
     scene bg reception
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Tu glisses sur les marches."
     n "Ta cheville se tord."
@@ -233,7 +280,7 @@ label arrive_travail_blessure:
 label bureau_normal:
 
     scene bg office
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Tâches monotones."
     n "Vue par la fenêtre."
@@ -247,7 +294,7 @@ label bureau_normal:
     # Ren’Py attend la fin de la vidéo automatiquement
     
     scene bg office
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Ton patron tombe avec sa chaise près de la vitre."
     n "Les collègues crient."
@@ -265,7 +312,7 @@ label bureau_normal:
 label bureau_blessure:
 
     scene bg office
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Tu continues malgré la douleur."
     n "Existentialisme intensifié."
@@ -283,15 +330,19 @@ label bureau_blessure:
 label toilette_risque:
 
     scene bg hallway_toilet
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Tu marches vers les toilettes."
 
     scene bg toilet
-    show r happy at ren_left
+    show r happy at left_unzoomed
+    with moveinleft
 
     n "Tu entends des cris."
     n "La porte s’ouvre violemment."
+
+    show m normal at right_unzoomed
+
     n "Un homme parle au téléphone."
 
     menu:
@@ -321,6 +372,10 @@ label mort_vaporise:
 
 label survie_toilette:
 
+    scene bg toilet
+    show r happy at left_unzoomed
+    show m normal at right_unzoomed
+
     n "Tu bloques la porte."
     n "Tu écoutes."
     n "Il parle d’argent."
@@ -338,12 +393,12 @@ label survie_toilette:
 label toilette_apparence:
 
     scene bg hallway_toilet
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Tu vas te rafraîchir."
 
     scene bg toilet
-    show r happy at ren_left
+    show r happy at left_zoomed
 
     n "Petit nettoyage express."
 
