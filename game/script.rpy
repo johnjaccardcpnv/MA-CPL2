@@ -148,7 +148,7 @@ label scene_1a:
     n "Douche rapide."
     n "Tu pars travailler."
 
-    jump arrive_travail_normal
+    jump scene_2a
 
 
 # =========================================================
@@ -173,7 +173,7 @@ label scene_1b:
     n "Regard de SDF."
     n "Tu ignores."
 
-    jump arrive_travail_blessure
+    jump scene_2b
 
 
 # =========================================================
@@ -195,18 +195,18 @@ label scene_1c:
         "Te lever en panique (risqué)":
             n "Tu t’habilles avec n’importe quoi."
             n "Tu files dehors."
-            jump scene_b1
+            jump scene_3c_b1
         "Assumer le retard":
-            jump scene_b2
+            jump scene_2c_b2
         "Te doucher (risqué)":
-            jump scene_b3
+            jump scene_2c_b3
 
 
 # =========================================================
 # B3 — MORT DOUCHE
 # =========================================================
 
-label scene_b3:
+label scene_2c_b3:
 
     scene bg bathroom
     show r savon at left_unzoomed
@@ -238,7 +238,7 @@ label scene_b3:
 # B2 — ASSUMER RETARD
 # =========================================================
 
-label scene_b2:
+label scene_2c_b2:
 
     n "Pas de douche."
     n "Croissant stratégique."
@@ -255,7 +255,7 @@ label scene_b2:
             h "T'habites ici ?"
             r "Oui pourquoi ?"
             h "Pour rien, je demandais juste..."
-            jump scene_b1
+            jump scene_3c_b1
         "Tu l'ignores":
             n "Tu ignores la personne."
             n "Il te regarde bizarrement."
@@ -283,7 +283,7 @@ label scene_b2:
 # B1 — PANIQUE
 # =========================================================
 
-label scene_b1:
+label scene_3c_b1:
 
     scene bg reception
     show r happy at left_unzoomed
@@ -297,17 +297,19 @@ label scene_b1:
     t "On n’emploie pas des SDFs ici. "
 
     menu:
-        "Aller aux toilettes te soigner":
-            jump toilette_apparence
-        "Ignorer et aller au bureau":
-            jump bureau_normal
+        "Partir aux toilettes pour soigner ton apparence":
+            n "Tu as compris que tu pues, donc tu vas aux toilettes pour te soigner."
+            jump scene_4c_c1
+        "Aller dans les bureaux":
+            n "Tu te dis dans ta tête « Elle exagère celle-là » et tu vas direct au bureau."
+            jump scene_4c_c2
 
 
 # =========================================================
 # ARRIVÉE TRAVAIL NORMAL
 # =========================================================
 
-label arrive_travail_normal:
+label scene_2a:
 
     scene bg reception
     show r happy at left_unzoomed
@@ -319,34 +321,6 @@ label arrive_travail_normal:
 
     n "Tu arrives à la réception."
     n "Une réceptionniste te fait un clin d’œil."
-
-    jump bureau_normal
-
-
-# =========================================================
-# ARRIVÉE AVEC BLESSURE
-# =========================================================
-
-label arrive_travail_blessure:
-
-    scene bg reception
-    show r happy at left_unzoomed
-
-    n "Tu glisses sur les marches."
-    n "Ta cheville se tord."
-
-    menu:
-        "Rester au bureau":
-            jump bureau_blessure
-        "Aller aux toilettes (risqué)":
-            jump toilette_risque
-
-
-# =========================================================
-# BUREAU NORMAL
-# =========================================================
-
-label bureau_normal:
 
     scene bg office
     show r happy at left_unzoomed
@@ -372,13 +346,62 @@ label bureau_normal:
     n "Tu quittes le bureau."
 
     return
+    # aller à midi
+
+
+# =========================================================
+# ARRIVÉE AVEC BLESSURE
+# =========================================================
+
+label scene_2b:
+
+    scene bg reception
+    show r happy at left_unzoomed
+
+    n "Tu glisses sur les marches."
+    n "Ta cheville se tord."
+
+    menu:
+        "Rester au bureau":
+            jump scene_3b_c1
+        "Aller aux toilettes (risqué)":
+            jump scene_3b_c2
+
+
+# =========================================================
+# BUREAU NORMAL
+# =========================================================
+
+label scene_4c_c2:
+    scene bg office
+    show r happy at left_unzoomed
+
+    n "Tu es au bureau à ton travail."  
+    
+    n "Tu complètes différentes tâches monotones, ennuyeuse et admire la vue."
+    
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/patron_tombe.webm")  
+    # Ren’Py attend la fin de la vidéo automatiquement
+    
+    scene bg office
+    show r happy at left_unzoomed
+    
+    n "Tu entends les cris de divers collègues et tu souris intérieurement."  
+    n "Tu prends la décision de quitter au bureau à la suite du léger accident au travail."
+
+    return
+    # aller à midi
 
 
 # =========================================================
 # BUREAU BLESSÉ
 # =========================================================
 
-label bureau_blessure:
+label scene_3b_c1:
 
     scene bg office
     show r happy at left_unzoomed
@@ -390,13 +413,14 @@ label bureau_blessure:
     n "Tu quittes le travail."
 
     return
+    # aller à midi
 
 
 # =========================================================
 # TOILETTES RISQUE
 # =========================================================
 
-label toilette_risque:
+label scene_3b_c2:
 
     scene bg hallway_toilet
     show r happy at left_unzoomed
@@ -416,12 +440,12 @@ label toilette_risque:
 
     menu:
         "Sortir (risqué)":
-            jump mort_vaporise
+            jump scene_4b_d1
         "Rester caché":
-            jump survie_toilette
+            jump scene_4b_d2
 
 
-label mort_vaporise:
+label scene_4b_d1:
 
     n "l'homme au téléphone te vaporise."
 
@@ -437,7 +461,7 @@ label mort_vaporise:
 
 
 
-label survie_toilette:
+label scene_4b_d2:
 
     scene bg toilet
     show r happy at left_unzoomed
@@ -451,22 +475,38 @@ label survie_toilette:
     n "Tu quittes discrètement le bureau."
 
     return
+    # aller à midi
 
 
 # =========================================================
 # TOILETTE APPARENCE
 # =========================================================
 
-label toilette_apparence:
+label scene_4c_c1:
 
-    scene bg hallway_toilet
+
+    scene bg office
     show r happy at left_unzoomed
+    n "Tu es au bureau à ton travail."
+ 
+    n "Tu complètes différentes tâches monotones, ennuyeuse et admire la vue."
+    
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
 
-    n "Tu vas te rafraîchir."
-
-    scene bg toilet
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/patron_tombe.webm")  
+    # Ren’Py attend la fin de la vidéo automatiquement
+    
+    scene bg office
     show r happy at left_unzoomed
+ 
 
-    n "Petit nettoyage express."
+    n "Tu entends les cris de divers collègues et tu souris intérieurement."
+ 
+    n "Tu prends la décision de quitter le bureau à la suite du léger accident au travail."  
 
-    jump bureau_normal
+
+    return
+    # aller à midi
