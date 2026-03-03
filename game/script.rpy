@@ -9,7 +9,7 @@ define m = Character("Homme aux toilette", color="#b94f08")
 define n = Character("Narrateur")
 
 # Sprites
-image r happy = "images/ren_happy.png"
+image r happy = "images/ren_legs.png"
 image r tel = "images/ren_tel.png"
 image r savon = "images/ren_savon.png"
 
@@ -35,7 +35,7 @@ image bg black = Solid("#000")
 transform left_zoomed:
     xalign 0.0
     yalign 1.0
-    zoom 2.5
+    zoom 2
 
 transform left_unzoomed:
     xalign 0.0
@@ -167,17 +167,22 @@ label scene_b3:
     show r savon at left_unzoomed
 
     n "Tu prends une douche."
+
+    play sound "audio/object/vitre.mp3"
+
     n "Bruit étrange."
     n "Tu ignores."
 
     n "La porte s’ouvre."
+
+    play sound "audio/object/porte.mp3"
 
     show j normal at right_unzoomed
     with moveinright
 
     n "Un homme cagoulé et armé entre."
 
-
+    play sound "audio/character/glissade.mp3"
 
     n "Tu glisses."
     n "Trop tard."
