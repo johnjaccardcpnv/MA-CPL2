@@ -23,7 +23,6 @@ define config.name = _("MA-CPL2")
 
 define gui.show_name = True
 
-
 ## La version du jeu.
 
 define config.version = "1.0"
@@ -33,6 +32,14 @@ define config.version = "1.0"
 ## guillemets, et laissez une ligne entre les paragraphes.
 
 define gui.about = _p("""
+Créé par une magnifique équipe pendant le projet de Ma-CPL2 (CPNV),\n
+de la créativité et de l'investissement sont les maîtres mots de ce projet.\n
+Notre équipe :\n
+- John Jaccard, dev et graphiste\n
+- Judah Periyasamy, scénariste de génie\n
+- Zachary Smith, petite pute de Judah\n
+- Christophe Fonseca, le goat du projet\n
+- Ryan Bersier
 """)
 
 

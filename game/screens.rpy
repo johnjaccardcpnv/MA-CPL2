@@ -294,44 +294,70 @@ screen navigation():
 
         xpos gui.navigation_xpos
         yalign 0.5
-
         spacing gui.navigation_spacing
 
         if main_menu:
-
-            textbutton _("Nouvelle partie") action Start()
-
+            textbutton _("Nouvelle partie") action Start():
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
         else:
+            textbutton _("Historique") action ShowMenu("history"):
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
+            textbutton _("Sauvegarde") action ShowMenu("save"):
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
 
-            textbutton _("Historique") action ShowMenu("history")
+        textbutton _("Charger") action ShowMenu("load"):
+            background Solid("#ffffff79")
+            padding (10, 10, 10, 10)
+            xminimum 250
+            yminimum 40
 
-            textbutton _("Sauvegarde") action ShowMenu("save")
-
-        textbutton _("Charger") action ShowMenu("load")
-
-        textbutton _("Préférences") action ShowMenu("preferences")
+        textbutton _("Préférences") action ShowMenu("preferences"):
+            background Solid("#ffffff79")
+            padding (10, 10, 10, 10)
+            xminimum 250
+            yminimum 40
 
         if _in_replay:
-
-            textbutton _("Fin de la rediffusion") action EndReplay(confirm=True)
-
+            textbutton _("Fin de la rediffusion") action EndReplay(confirm=True):
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
         elif not main_menu:
+            textbutton _("Menu principal") action MainMenu():
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
 
-            textbutton _("Menu principal") action MainMenu()
-
-        textbutton _("À propos") action ShowMenu("about")
+        textbutton _("À propos") action ShowMenu("about"):
+            background Solid("#ffffff79")
+            padding (10, 10, 10, 10)
+            xminimum 250
+            yminimum 40
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## L'aide n’est ni nécessaire ni pertinente sur les appareils
-            ## mobiles.
-            textbutton _("Aide") action ShowMenu("help")
+            textbutton _("Aide") action ShowMenu("help"):
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
 
         if renpy.variant("pc"):
-
-            ## Le bouton pour quitter est banni sur iOS et inutile sur Android
-            ## et sur le Web.
-            textbutton _("Quitter") action Quit(confirm=not main_menu)
+            textbutton _("Quitter") action Quit(confirm=not main_menu):
+                background Solid("#ffffff79")
+                padding (10, 10, 10, 10)
+                xminimum 250
+                yminimum 40
 
 
 style navigation_button is gui_button
@@ -1148,6 +1174,15 @@ style help_label_text:
 ## Écrans additionnels
 ################################################################################
 
+
+screen death_button():
+
+    modal True   # ← BLOQUE toute interaction derrière
+
+    textbutton "Revenir au menu principal":
+        xalign 0.5
+        yalign 0.75
+        action Function(renpy.full_restart)
 
 ## Écran de confirmation #######################################################
 ##

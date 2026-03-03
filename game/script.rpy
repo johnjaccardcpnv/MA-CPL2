@@ -6,6 +6,7 @@ define r = Character("Ren", color="#2a109c", what_prefix="“", what_suffix="”
 define t = Character("Réceptionniste", color="#fc00e7")
 define j = Character("Jackson", color="#f707e3")
 define m = Character("Homme aux toilette", color="#b94f08")
+define h = Character("Hector", color="#ffffff")
 define n = Character("Narrateur")
 
 # Sprites
@@ -19,6 +20,10 @@ image j normal = "images/jackson.png"
 
 image m normal = "images/toiletteman.png"
 
+image h trash = "images/hector_w_trash.png"
+image h normal = "images/hector_debout.png"
+image h explose = "images/hector_explosion.png"
+
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
 image bg bathroom = "images/bathroom.jpg"
@@ -30,12 +35,16 @@ image bg toilet = "images/toillet.png"
 image bg hallway_toilet = "images/toillet_hallway.png"
 image bg black = Solid("#000")
 
+image bg death = "images/death.jpg"
 
-
-transform left_zoomed:
+transform breathing:
     xalign 0.0
     yalign 1.0
-    zoom 2
+    zoom 2.0
+    linear 1.5 zoom 1.02
+    linear 1.5 zoom 1.0
+    repeat
+
 
 transform left_unzoomed:
     xalign 0.0
@@ -53,10 +62,34 @@ transform right_unzoomed:
     yalign 1.0
     zoom 2
 
+transform right_far:
+    xalign 1.0
+    yalign 0.5
+    zoom 1
+
 transform midright:
     xalign 0.7
     yalign 1.0
     zoom 2
+
+label death_screen:
+    stop music
+    scene bg death
+    with fade
+
+    
+    $ _rollback = False
+    $ quick_menu = False
+
+    play sound "audio/gui/death.mp3"
+
+    pause 3.0
+
+
+    show screen death_button
+
+    pause
+
 
 # =========================================================
 # START
@@ -69,17 +102,20 @@ label start:
 
     $ renpy.movie_cutscene("videos/introduction_long.webm")
 
-    play music "musics/mii.mp3" fadein 1.0
+    play music "musics/mii.mp3" fadein 1.0 volume 0.3
 
     scene bg bedroom
-    show r happy at left_zoomed
+    with fade
+    show r happy at left_unzoomed
 
     n "7h43."
     n "Ton réveil n’a pas sonné."
     n "Enfin si."
     n "Mais tu l’as éteint avec la précision d’un ninja endormi."
     n "Ton téléphone vibre."
+    play sound "audio/object/notification.wav" volume 0.5
     n "3 notifications."
+    play sound "audio/character/gargouillement.mp3"
     n "Ton estomac gargouille."
     n "Tu es en retard… quelque part."
 
@@ -103,8 +139,11 @@ label scene_1a:
     n "Douleur."
     n "Direction la salle de bain."
 
+
     scene bg bathroom
-    show r savon at left_zoomed
+    with fade
+    show r savon at left_unzoomed
+    with moveinleft
 
     n "Douche rapide."
     n "Tu pars travailler."
@@ -124,10 +163,13 @@ label scene_1b:
     n "Préparation express."
 
     scene bg street
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "8h50."
     n "Personne étrange devant chez toi."
+    show h trash at right_far
+    with moveinright 
+
     n "Regard de SDF."
     n "Tu ignores."
 
@@ -140,9 +182,10 @@ label scene_1b:
 
 label scene_1c:
 
-    show r tel at left_zoomed
+    show r tel at left_unzoomed
 
     n "Une vidéo."
+    play sound "audio/object/video.mp3" volume 0.3
     n "Puis une autre."
     n "Puis 8h35."
     n "Ton cerveau : “Ça va passer.”"
@@ -150,6 +193,8 @@ label scene_1c:
 
     menu:
         "Te lever en panique (risqué)":
+            n "Tu t’habilles avec n’importe quoi."
+            n "Tu files dehors."
             jump scene_b1
         "Assumer le retard":
             jump scene_b2
@@ -186,12 +231,8 @@ label scene_b3:
 
     n "Tu glisses."
     n "Trop tard."
-
-    scene bg black
-    centered "{size=60}{color=#ff0000}DEAD{/color}{/size}"
-
-    return
-
+    
+    jump death_screen
 
 # =========================================================
 # B2 — ASSUMER RETARD
@@ -203,13 +244,39 @@ label scene_b2:
     n "Croissant stratégique."
 
     scene bg hallway
-    show r happy at left_zoomed
-
+    show r happy at left_unzoomed
     n "8h55."
+    show h explose at right_unzoomed
+    with moveinright
     n "Personne étrange dans le couloir."
-    n "Tu ignores."
+    n "Il te lance regard de SDF"
+    menu:
+        "le regarder":
+            h "T'habites ici ?"
+            r "Oui pourquoi ?"
+            h "Pour rien, je demandais juste..."
+            jump scene_b1
+        "Tu l'ignores":
+            n "Tu ignores la personne."
+            n "Il te regarde bizarrement."
+            n "Tu continues ton chemin."
+            n "Il te suit."
+            n "Tu accélères le pas."
+            n "Il accélère aussi."
+            n "Tu te retournes."
+            n "Il est juste derrière toi."
+            n "il te lance une bombe dessus."
 
-    jump arrive_travail_normal
+            # Fond noir pour que rien ne cache la vidéo
+            scene black
+            # --- Lecture de la vidéo plein écran ---
+            $ renpy.movie_cutscene("videos/explosion.webm")  
+            # Ren’Py attend la fin de la vidéo automatiquement
+
+            jump death_screen
+
+
+
 
 
 # =========================================================
@@ -217,9 +284,6 @@ label scene_b2:
 # =========================================================
 
 label scene_b1:
-
-    n "Tu t’habilles avec n’importe quoi."
-    n "Tu files dehors."
 
     scene bg reception
     show r happy at left_unzoomed
@@ -266,7 +330,7 @@ label arrive_travail_normal:
 label arrive_travail_blessure:
 
     scene bg reception
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Tu glisses sur les marches."
     n "Ta cheville se tord."
@@ -285,7 +349,7 @@ label arrive_travail_blessure:
 label bureau_normal:
 
     scene bg office
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Tâches monotones."
     n "Vue par la fenêtre."
@@ -299,7 +363,7 @@ label bureau_normal:
     # Ren’Py attend la fin de la vidéo automatiquement
     
     scene bg office
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Ton patron tombe avec sa chaise près de la vitre."
     n "Les collègues crient."
@@ -317,7 +381,7 @@ label bureau_normal:
 label bureau_blessure:
 
     scene bg office
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Tu continues malgré la douleur."
     n "Existentialisme intensifié."
@@ -335,7 +399,7 @@ label bureau_blessure:
 label toilette_risque:
 
     scene bg hallway_toilet
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Tu marches vers les toilettes."
 
@@ -353,7 +417,6 @@ label toilette_risque:
     menu:
         "Sortir (risqué)":
             jump mort_vaporise
-            scene bg hallway_toilet
         "Rester caché":
             jump survie_toilette
 
@@ -370,9 +433,8 @@ label mort_vaporise:
     $ renpy.movie_cutscene("videos/vaporisated_ren.webm")  
     # Ren’Py attend la fin de la vidéo automatiquement
 
-    centered "{size=60}{color=#ff0000}DEAD{/color}{/size}"
+    jump death_screen
 
-    return
 
 
 label survie_toilette:
@@ -398,12 +460,12 @@ label survie_toilette:
 label toilette_apparence:
 
     scene bg hallway_toilet
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Tu vas te rafraîchir."
 
     scene bg toilet
-    show r happy at left_zoomed
+    show r happy at left_unzoomed
 
     n "Petit nettoyage express."
 
