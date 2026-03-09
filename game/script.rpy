@@ -488,7 +488,6 @@ label scene_4b_d2:
 # =========================================================
 # Partir aux toilettes pour soigner ton apparence 
 # =========================================================
-
 label scene_4c_c1:
 
 
@@ -517,3 +516,13 @@ label scene_4c_c1:
 
     return
     # aller à midi
+
+    label scene_5
+    scene bg office
+    show r happy at left_unzoomed
+    n "Tu décides d’aller manger quelque part (parce que tu as faim…)."
+    menu:
+        "Aller à ton bar préféré":
+            jump scene_5_d1
+        "Aller dans un restaurant italien":
+            jump scene_5_d2
