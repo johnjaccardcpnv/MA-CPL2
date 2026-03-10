@@ -1082,7 +1082,7 @@ screen keyboard_help():
         text _("Cache l’interface utilisateur.")
 
     hbox:
-        label "S"
+        label "F12"
         text _("Prend une capture d’écran.")
 
     hbox:

@@ -227,3 +227,10 @@ init python:
 ## slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+init python:
+    # Retirer le binding par défaut sur "s"
+    config.keymap['screenshot'] = []
+
+    # Rebinder sur une autre touche, par exemple F12
+    config.keymap['screenshot'].append('K_F12')
