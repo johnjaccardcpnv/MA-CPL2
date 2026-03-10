@@ -146,9 +146,7 @@ screen qte_bar():
 # =========================================================
 
 label start:
-
-    scene bg black
-    with fade
+    
 
     $ renpy.movie_cutscene("videos/introduction_long.webm")
 
