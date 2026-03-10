@@ -3,11 +3,20 @@
 # =========================================================
 
 define r = Character("Ren", color="#2a109c", what_prefix="“", what_suffix="”")
-define t = Character("Réceptionniste", color="#fc00e7")
-define j = Character("Jackson", color="#f707e3")
-define m = Character("Homme aux toilette", color="#b94f08")
+define t = Character("Réceptionniste", color="#fc00e7", what_prefix="“", what_suffix="”")
+define j = Character("Jackson", color="#f707e3", what_prefix="“", what_suffix="”")
+define roberto = Character("Roberto", color="#c4b10c", what_prefix="“", what_suffix="”")
+define m = Character("Homme aux toilette", color="#b94f08", what_prefix="“", what_suffix="”")
 define h = Character("Hector", color="#ffffff")
 define n = Character("Narrateur")
+define rh = Character("Jennifer", color="#dd0a0a", what_prefix="“", what_suffix="”")
+
+default qte_time = 3.0
+default qte_key = renpy.random.choice(["K_SPACE", "2", "1"])
+
+# Props
+image drink = "images/drink.png"
+image pizza = "images/pizza.png"
 
 # Sprites
 image r happy = "images/ren_legs.png"
@@ -16,6 +25,8 @@ image r savon = "images/ren_savon.png"
 
 image t normal = "images/receptionniste.png"
 
+image roberto normal = "images/roberto.png"
+
 image j normal = "images/jackson.png"
 
 image m normal = "images/toiletteman.png"
@@ -23,6 +34,9 @@ image m normal = "images/toiletteman.png"
 image h trash = "images/hector_w_trash.png"
 image h normal = "images/hector_debout.png"
 image h explose = "images/hector_explosion.png"
+
+image rh normal = "images/jennifer.png"
+image rh choc = "images/jennifer_choc.png"
 
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
@@ -33,6 +47,9 @@ image bg office = "images/office.png"
 image bg reception = "images/reception.png"
 image bg toilet = "images/toillet.png"
 image bg hallway_toilet = "images/toillet_hallway.png"
+image bg bar = "images/bar.png"
+image bg restaurant = "images/restaurant.jpg"
+image bg outdoor_restaurant = "images/outdoor_restaurant.png"
 image bg black = Solid("#000")
 
 image bg death = "images/death.jpg"
@@ -92,6 +109,33 @@ label death_screen:
 
     pause
 
+    
+
+# QTE bar
+screen qte_bar():
+
+    bar:
+        value qte_time
+        range 3.0
+        xsize 400
+        xpos 0.5
+        ypos 0.6
+        xanchor 0.5
+    
+    key qte_key.upper() action Return(True)
+
+    text "Appuie sur [qte_key] !" xpos 0.5 ypos 0.55 xanchor 0.5
+
+    timer 0.05 repeat True action [
+        SetVariable("qte_time", qte_time - 0.05),
+        Function(renpy.restart_interaction)
+    ]
+
+    key "K_SPACE" action Return(True)
+
+    if qte_time <= 0:
+        timer 0.01 action Return(False)
+
 
 # =========================================================
 # Le réveil
@@ -128,6 +172,8 @@ label start:
             jump scene_1b
         "Regarder ton téléphone":
             jump scene_1c
+        "DEBUG scene 6a":
+            jump scene_6b_d2
 
 
 # =========================================================
@@ -521,6 +567,203 @@ label scene_5:
     n "Tu décides d’aller manger quelque part (parce que tu as faim…)."
     menu:
         "Aller à ton bar préféré":
-            jump scene_5_d1
+            jump scene_6a_d1
         "Aller dans un restaurant italien":
-            jump scene_5_d2
+            jump scene_6a_d2
+
+# =========================================================
+# Restaurant
+# =========================================================
+label scene_6b_d2:
+
+    scene bg restaurant
+    show r happy at left_unzoomed
+    n "Tu décides (vue que tu as la dalle énorme) d’aller dans un très bon restaurant italien (alors que tu es Japon)."
+    n "Ce restaurant a 4 Etoiles Michelin et ils servent des plats exceptionnels."
+    n "Alors c’est décidé, tu vas dans ce restaurant car tu es BLINDééééééééééé !"
+    n "On t’a apporté la carte des plats mais tu sais déjà quel prendre. Car sur la carte c’est ecrit, Pizza of the season."
+    n "Alors tu commandes cette pizza. Et pour la boisson, tu demandes au restaurant, une suprise parmi la selection exclusive que le restaurant possède."
+    n "5 min après..."
+    n "Tu vois une énorme assiette."
+    r "Ohhh j’ai hâte, ça l’air trop bon…"
+
+    show s happy at right_unzoomed
+
+    s "Votre pizza all-in-one exclusive pro-max plus pro limited edition est prête avec votre boisson surprise digne des dieux romains."
+    n "Tu te baves par ce mot sublime que le serveur te dit."
+
+    hide s
+
+    n "Et là…"
+
+    show drink at truecenter
+    pause 3
+    hide drink
+
+    show pizza at truecenter
+    pause 3
+    hide pizza
+
+    n "Etonnement (en fait tu es bizarre), tu kiffes ce que tu vois et entame ce festin."
+    n "1 min après..."
+
+    show s happy at right_unzoomed
+    s "Alors Monsieur, tout se passe à merv……"
+    n "Le serveur n’a pas le temps de finir sa phrase que tu as tout mangé et apprécie la fin de ta boisson (frérot tu es bizarre)."
+    r "C’était délicieux, je veux bien l’addition svp"
+    n "Le serveur émerveillé par ce qu’il a vu, part et te ramene l’addition. "
+
+    hide s
+    pause 1
+    show s happy at right_unzoomed
+
+    n "Et là ……     108230,40 Yen Japonais"
+    n "Mais tellement que tu es blindax, tu poses ta petite carte American Express Platium Pro Max Worldwide Obama Certified Edition et bim ça valide le paiement."
+    s "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
+
+    hide r
+    show r happy at truecenter
+    show bg outdoor_restaurant
+
+    n "Tu quittes ce restaurant avec un ventre rempli et un sourire qui pointe vers le ciel."
+    n "Tu décides maintenant de prendre le chemin :"
+    menu:
+        "Droite":
+            jump scene_6b_d3
+        "Gauche (risqué)":
+            jump scene_6b_d4
+
+
+
+# =========================================================
+# Aller à ton bar préféré 
+# =========================================================
+label scene_6a_d1:
+    scene bg office
+    show r happy at left_unzoomed
+    n "Tu décides d’aller à ton bar préféré. "
+ 
+    r "J’ai besoin d’une bonne bière après ce que j’ai vu !"
+    
+    menu:
+        "Boire avec modération (c’est un super type ce modération)":
+            jump scene_6a_d3
+        "Profiter…. (Modération absent) (risqué)":
+            jump scene_6a_d4
+
+# =========================================================
+# Boire avec modération
+# =========================================================
+label scene_6a_d3:
+    scene bg bar
+    show r happy at left_unzoomed
+    with moveinleft
+    n "Tu passes un bon moment, tu sociabilises avec beaucoup de personnes (l’alcool ça aide…) et du coin de l’œil tu remarques une tête familière."
+    n "Tu décides d’aller vers cette personne et surprise c’est ta RH, Jennifer."
+    show jennifer at right_unzoomed
+    with moveinright
+
+    n "Comme tu as de l’alcool dans le sang, donc tu vas parler avec elle."
+
+    r "J’en suis à un stade où la musique me regarde de travers."
+    
+    rh "Ok, t’es officiellement trop bourré pour ce bar."
+
+    r "Mais parfaitement sobre pour ton canapé."
+    
+    rh "(Avec un sourire) J’ai du vin chez moi. Et zéro musique."
+
+    r "C’est la meilleure phrase que j’ai entendu ce soir."
+
+    rh "Viens avant que tu dises une connerie de plus."
+    n "Tu discutes avec elle et après 2 chopes de bières (boire avec modération), vous sortez du bar et vous dirigez chez la RH."
+    scene bg street
+    with fade
+    n "Vous marchez et rigolez"
+    show r happy at left_unzoomed
+    with moveinleft
+
+    r "Il fait bizarrement froid d’un coup."
+    show jennifer at right_unzoomed
+    with moveinright
+    rh "C’est toujours comme ça en sortant d’un bar."
+
+    r "Ouais… ou quand on marche trop vite."
+
+    rh "(Souris) T’es sûr que ça va ?"
+
+    r "Oui."
+    r "Enfin… j’ai juste beaucoup ri ce soir."
+
+    rh "Moi aussi."
+    rh "Ça fait du bien."
+    n "(petit silence, ils continuent de marcher)"
+
+    rh "On est presque arrivés."
+
+    r "Ok." 
+    n "Eh oui t’es bientôt chez elle. Mais vous devez traverser la route." 
+
+    n "Vous apercevez deux voitures qui approchent à grande vitesse."
+    n "Une des voitures se prend le poteau (le gros nul)."
+    n "Le poteau se renvers."
+
+    #video accident part 1
+    $ qte_time = 3.0
+    $ result = renpy.call_screen("qte_bar")
+
+    if result:
+        n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
+    else:
+        n "Raté…"
+    # QTE : Esquiver le poteau.
+
+    # S’ils ratent : Mort
+
+
+
+    # S’il reussi à esquiver :
+
+    n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
+
+    # Suite vidéo part 2
+    ### Jennifer à été slimed par les ops ###
+
+    n "Rempli de haine car ils ont ruiné ta date tu cours vers le camion militaire pour t’armer, et te venger sur les responsables de cet accident"
+
+    n "Le conducteur du camion est mort sur impact mais ils a des armes dans le cabinet"
+
+    menu:
+        "Prendre le fusil d’assaut":
+            jump scene_6a_d5
+        "Prendre le lance-roquette":
+            jump scene_6a_d6
+
+
+# =========================================================
+# Prendre le fusil d’assaut 
+# =========================================================
+label scene_6a_d5:
+    scene bg street
+    show r happy at left_unzoomed
+    n "Tu décides de prendre cette belle SCAR-15 légendaire (référence à CS) et te tourne vers les malfaiteurs." 
+    n "Tu leur donnes une « bonne leçon » "
+    n "Les portières du véhicule claquent. Deux gars descendent, très confiants, très énervés."
+    show roberto normal at right_far
+    with moveinright
+    show j normal at midright
+    with moveinright
+    roberto "Eh toi."
+    roberto "On va te massacrer."
+    n "Ouais. Lentement."
+    n "Notre perso regarde la SCAR-15 dans ses mains, puis les regarde, puis re-regarde la SCAR-15."
+    r "Non non."
+    r "Alors ça… vraiment non."
+    n "Les deux gars s’arrêtent."
+    n "Il lève l’arme. Petit silence."
+    j "Attends attends attends—"
+    n "TROP TARD."
+    n "Bruit de tirs. Les deux gars disparaissent de l’écran"
+    n "Il regarde là où ils étaient, petit sourire."
+    r "Hasta la vista…"
+    r "les nulos."
