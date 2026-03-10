@@ -279,8 +279,6 @@ label scene_2c_b2:
 
 
 
-
-
 # =========================================================
 #  Te lever en panique (risqué) 
 # =========================================================
@@ -347,8 +345,7 @@ label scene_2a:
 
     n "Tu quittes le bureau."
 
-    return
-    # aller à midi
+    jump scene_5
 
 
 # =========================================================
@@ -395,8 +392,7 @@ label scene_4c_c2:
     n "Tu entends les cris de divers collègues et tu souris intérieurement."  
     n "Tu prends la décision de quitter au bureau à la suite du léger accident au travail."
 
-    return
-    # aller à midi
+    jump scene_5
 
 
 # =========================================================
@@ -414,8 +410,7 @@ label scene_3b_c1:
     n "Ton patron tombe encore."
     n "Tu quittes le travail."
 
-    return
-    # aller à midi
+    jump scene_5
 
 
 # =========================================================
@@ -481,8 +476,7 @@ label scene_4b_d2:
 
     n "Tu quittes discrètement le bureau."
 
-    return
-    # aller à midi
+    jump scene_5
 
 
 # =========================================================
@@ -514,10 +508,14 @@ label scene_4c_c1:
     n "Tu prends la décision de quitter le bureau à la suite du léger accident au travail."  
 
 
-    return
-    # aller à midi
+    jump scene_5
 
-    label scene_5
+
+# =========================================================
+# Midi
+# =========================================================
+label scene_5:
+    
     scene bg office
     show r happy at left_unzoomed
     n "Tu décides d’aller manger quelque part (parce que tu as faim…)."
