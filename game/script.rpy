@@ -147,6 +147,7 @@ screen qte_bar():
 
 label start:
     
+    jump boss_final
 
     $ renpy.movie_cutscene("videos/introduction_long.webm")
 

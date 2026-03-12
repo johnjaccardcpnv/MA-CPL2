@@ -2,7 +2,7 @@
 
 # écran pour lancer le jeu
 label boss_final:
-    "Le Dragon Obscur rugit dans l'ombre!"
+    "Un Hector sauvage apparait !"
     
     # CORRECT - Sans le $ et sans parentheses
     call boss_combat(player_hp=150)
@@ -40,17 +40,17 @@ default boss_config = {
 }
 
 default player_spells = [
-    {"name": "Attaque", "mp": 0, "power": 25, "image": "images/blank.png"},
-    {"name": "Feu", "mp": 10, "power": 40, "image": "images/blank.png"},
-    {"name": "Soin", "mp": 15, "heal": 50, "image": "images/blank.png"},
+    {"name": "Souffle de Don Gomes", "mp": 0, "power": 1000, "image": "images/soufflet.png"},
+    {"name": "Coup de queue", "mp": 50, "power": 300, "image": "images/sausage.png"},
+    {"name": "Boire le lait paternel", "mp": 15, "heal": 50, "image": "images/lait.png"},
     {"name": "Potion HP", "potions": "hp", "image": "images/blank.png"},
     {"name": "Potion PM", "potions": "mp", "image": "images/blank.png"},
     {"name": "Fuir", "image": "images/blank.png"}
 ]
 
 default boss_spells = [
-    {"name": "Griffes", "mp": 0, "power": 35},
-    {"name": "Souffle", "mp": 25, "power": 50}
+    {"name": "Jet de poubelles", "mp": 0, "power": 35},
+    {"name": "Patate de forain", "mp": 25, "power": 50}
 ]
 
 image bg_combat = "images/bg_combat.png"
