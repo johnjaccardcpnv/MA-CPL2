@@ -6,3 +6,7 @@ game/cache/py3analysis.rpyb
 game/saves/navigation.json
 game/saves/persistent
 traceback.txt
+/game/cache
+game/saves/navigation.json
+game/saves/persistent
+game/tl/None/common.rpymc
