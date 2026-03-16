@@ -636,7 +636,7 @@ label scene_6b_d2:
     menu:
         "Droite":
             jump scene_6b_d3
-        "Gauche (risqué)":
+        "Gauche":
             jump scene_6b_d4
 
 
@@ -798,7 +798,7 @@ label scene_6a_d5:
 # =========================================================
 # rue de gauche
 # =========================================================
-label scene_6b_d3:
+label scene_6b_d4:
     scene bg left_street
     show r happy at right_unzoomed
 
@@ -811,3 +811,111 @@ label scene_6b_d3:
     # Ren’Py attend la fin de la vidéo automatiquement
 
     jump death_screen
+
+
+
+# =========================================================
+# rue de droite
+# =========================================================
+label scene_6b_d3:
+    scene bg right_street
+    show r happy at left_unzoomed
+
+    n "Tu décides d’aller à droite et tu tombes sur cette magnifique rue nommé 真珠湾 (Shinjuwan)."
+    n "Tu marches un petit moment et tu arrives dans cette street market vraiment sympa"
+
+    hide bg right_street
+    scene bg right_far
+
+    n "Tu marches un petit moment et tu arrives dans cette street market vraiment sympa."
+
+    hide r
+    hide bg right_far
+    scene bg street_market
+
+    n "Et tu te retrouves devant un street market qui vend des fruits issue du Mont Fuji (mais version Temu)."
+    n "Tu te fais accoster par la baboushka qui te demande : "
+
+    show r happy at left_unzoomed
+    show b happy at right_unzoomed
+
+    b "Comment puis-je vous aider jeune monsieur ? "
+
+    menu:
+        "Refuser (mechant)":
+            jump scene_6b_d5
+        "Acheter un fruit (c’est bien les vitamines)":
+            jump scene_6b_d6
+        "Acheter le tout (MrBeast challenge)"
+            jump scene_6b_d7
+
+
+# =========================================================
+# refus à la baboushka
+# =========================================================
+label scene_6b_d5
+    show r happy at left_unzoomed
+    show b happy at right_unzoomed
+    scene bg street_market
+
+    n "La vieille baboushka te regarde avec un grand sourire."
+    b "Comment puis-je vous aider jeune monsieur ?"
+    r "Non merci… vos fruits ont l’air un peu… suspects."
+    n "Le sourire disparaît."
+    n "La baboushka se penche sous son stand."
+    n "Elle sort un énorme couteau de cuisine."
+    b "Tu veux goûter… ou partir ?"
+
+    menu:
+        "Fuir":
+            jump scene_6b_d5_1
+        "S'excuser":
+            jump scene_6b_d5_2
+
+
+
+# =========================================================
+# refus à la baboushka fin 1
+# =========================================================
+label scene_6b_d5_1
+
+    n "Tu tournes les talons et sprintes comme un dératé."
+    r "VIE SAUVE !"
+    n "Tu cours 10 mètres."
+    n "15 mètres."
+    n "20 mètres."
+    n "Tu souris."
+    r "Facile."
+    n "Soudain…"
+    n "💥 CRASH"
+    n "Tu te fais renverser par une camionnette de livraison de fruits."
+
+    jump death_screen
+
+
+
+# =========================================================
+# refus à la baboushka fin 2
+# =========================================================
+label scene_6b_d5_2
+
+    r "OK OK désolé ! Vos fruits ont l’air incroyables !"
+    n "La baboushka te regarde."
+    b "Trop tard."
+    n "Elle te donne une pomme."
+    b "Mange."
+    n "Tu prends une bouchée."
+    r "Pas mal… "
+    n "Tu t’arrêtes."
+    n "Tu deviens pâle."
+    r "Attendez… c’est quoi ce goût…"
+    b "Pesticide soviétique."
+
+    jump death_screen
+
+
+
+
+
+
+
