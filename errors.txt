@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 111: scene statement expects a non-empty block.
-    scene bg bathroom:
-                      ^
+File "game/final-bossfight.rpy", line 292: keyword argument 'zorder' appears more than once in a screen statement.
+    zorder 200
+          ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Feb  3 15:10:55 2026
+Mon Mar 16 14:36:28 2026

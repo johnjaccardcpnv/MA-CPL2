@@ -146,6 +146,9 @@ screen qte_bar():
 # =========================================================
 
 label start:
+
+    
+    $result = renpy.call_screen("katana_duel_minigame")
     
     jump boss_final
 
