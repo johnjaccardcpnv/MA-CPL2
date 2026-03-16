@@ -32,6 +32,8 @@ image j normal = "images/jackson.png"
 
 image m normal = "images/toiletteman.png"
 
+image f normal = "images/francesco.png"
+
 image h trash = "images/hector_w_trash.png"
 image h normal = "images/hector_debout.png"
 image h explose = "images/hector_explosion.png"
@@ -591,12 +593,12 @@ label scene_6b_d2:
     n "Tu vois une énorme assiette."
     r "Ohhh j’ai hâte, ça l’air trop bon…"
 
-    show s happy at right_unzoomed
+    show f normal at right_unzoomed
 
     s "Votre pizza all-in-one exclusive pro-max plus pro limited edition est prête avec votre boisson surprise digne des dieux romains."
     n "Tu te baves par ce mot sublime que le serveur te dit."
 
-    hide s
+    hide f
 
     n "Et là…"
 
@@ -611,15 +613,15 @@ label scene_6b_d2:
     n "Etonnement (en fait tu es bizarre), tu kiffes ce que tu vois et entame ce festin."
     n "1 min après..."
 
-    show s happy at right_unzoomed
+    show f normal at right_unzoomed
     s "Alors Monsieur, tout se passe à merv……"
     n "Le serveur n’a pas le temps de finir sa phrase que tu as tout mangé et apprécie la fin de ta boisson (frérot tu es bizarre)."
     r "C’était délicieux, je veux bien l’addition svp"
     n "Le serveur émerveillé par ce qu’il a vu, part et te ramene l’addition. "
 
-    hide s
+    hide f
     pause 1
-    show s happy at right_unzoomed
+    show f normal at right_unzoomed
 
     n "Et là ……     108230,40 Yen Japonais"
     n "Mais tellement que tu es blindax, tu poses ta petite carte American Express Platium Pro Max Worldwide Obama Certified Edition et bim ça valide le paiement."
