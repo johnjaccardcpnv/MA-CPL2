@@ -22,6 +22,7 @@ image pizza = "images/pizza.png"
 image r happy = "images/ren_legs.png"
 image r tel = "images/ren_tel.png"
 image r savon = "images/ren_savon.png"
+image r gun = "images/ren_gun_nobg.png"
 
 image t normal = "images/receptionniste.png"
 
@@ -35,7 +36,7 @@ image h trash = "images/hector_w_trash.png"
 image h normal = "images/hector_debout.png"
 image h explose = "images/hector_explosion.png"
 
-image rh normal = "images/jennifer.png"
+image rh normal = "images/jennifer_pants.png"
 image rh choc = "images/jennifer_choc.png"
 
 # Backgrounds
@@ -51,6 +52,9 @@ image bg bar = "images/bar.png"
 image bg restaurant = "images/restaurant.jpg"
 image bg outdoor_restaurant = "images/outdoor_restaurant.png"
 image bg black = Solid("#000")
+image bg gun_fight = "images/bg_combat.png"
+image bg left_street = "images/left_street.jpg"
+ 
 
 image bg death = "images/death.jpg"
 
@@ -173,7 +177,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "DEBUG scene 6a":
-            jump scene_6b_d2
+            jump scene_6a_d5
 
 
 # =========================================================
@@ -642,6 +646,9 @@ label scene_6a_d1:
     scene bg office
     show r happy at left_unzoomed
     n "Tu décides d’aller à ton bar préféré. "
+
+    scene bg bar
+    show r happy at left_unzoomed
  
     r "J’ai besoin d’une bonne bière après ce que j’ai vu !"
     
@@ -660,7 +667,7 @@ label scene_6a_d3:
     with moveinleft
     n "Tu passes un bon moment, tu sociabilises avec beaucoup de personnes (l’alcool ça aide…) et du coin de l’œil tu remarques une tête familière."
     n "Tu décides d’aller vers cette personne et surprise c’est ta RH, Jennifer."
-    show jennifer at right_unzoomed
+    show rh normal at right_unzoomed
     with moveinright
 
     n "Comme tu as de l’alcool dans le sang, donc tu vas parler avec elle."
@@ -684,7 +691,7 @@ label scene_6a_d3:
     with moveinleft
 
     r "Il fait bizarrement froid d’un coup."
-    show jennifer at right_unzoomed
+    show rh normal at right_unzoomed
     with moveinright
     rh "C’est toujours comme ça en sortant d’un bar."
 
@@ -715,12 +722,7 @@ label scene_6a_d3:
     if result:
         n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
     else:
-        n "Raté…"
-    # QTE : Esquiver le poteau.
-
-    # S’ils ratent : Mort
-
-
+        jump death_screen
 
     # S’il reussi à esquiver :
 
@@ -747,6 +749,8 @@ label scene_6a_d5:
     scene bg street
     show r happy at left_unzoomed
     n "Tu décides de prendre cette belle SCAR-15 légendaire (référence à CS) et te tourne vers les malfaiteurs." 
+    hide r 
+    show r gun at left_unzoomed
     n "Tu leur donnes une « bonne leçon » "
     n "Les portières du véhicule claquent. Deux gars descendent, très confiants, très énervés."
     show roberto normal at right_far
@@ -755,7 +759,7 @@ label scene_6a_d5:
     with moveinright
     roberto "Eh toi."
     roberto "On va te massacrer."
-    n "Ouais. Lentement."
+    j "Ouais. Lentement."
     n "Notre perso regarde la SCAR-15 dans ses mains, puis les regarde, puis re-regarde la SCAR-15."
     r "Non non."
     r "Alors ça… vraiment non."
@@ -763,7 +767,45 @@ label scene_6a_d5:
     n "Il lève l’arme. Petit silence."
     j "Attends attends attends—"
     n "TROP TARD."
-    n "Bruit de tirs. Les deux gars disparaissent de l’écran"
-    n "Il regarde là où ils étaient, petit sourire."
-    r "Hasta la vista…"
-    r "les nulos."
+    hide roberto with dissolve
+    hide j with dissolve
+    hide r with dissolve
+    # Bruit de tirs. Les deux gars disparaissent de l’écran
+    show bg gun_fight
+    
+    play music "musics/gun_theme.mp3" fadein 1.0 volume 0.8
+    pause 2.0
+
+    $result = renpy.call_screen("shooter_minigame")
+
+
+    if result == "win":
+        pause 0.1    
+        stop music fadeout 1.0
+        $ renpy.movie_cutscene("videos/gun_fight.webm")
+        play music "musics/mii.mp3" fadein 1.0 volume 0.3
+        #add image avant video mais sans les deux méchants
+        n "Il regarde là où ils étaient, petit sourire."
+        r "Hasta la vista…"
+        r "les nulos."
+    else:
+        jump death_screen
+
+
+
+# =========================================================
+# rue de gauche
+# =========================================================
+label scene_6b_d3:
+    scene bg left_street
+    show r happy at right_unzoomed
+
+    n "Tu décides de prendre le chemin à gauche (parce que tu entends de la bonne musique)."
+    n "Tu marches dans cette direction et tu arrives à coté d’une immense house party de malade."
+    n "Tu réfléchis est ce que tu t’incrustes dans cette fête mais tu n’as pas apercu le titan colossal qui va tomber sur toi."
+
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/promenade_fete.webm")
+    # Ren’Py attend la fin de la vidéo automatiquement
+
+    jump death_screen
