@@ -187,7 +187,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "DEBUG scene 6a":
-            jump scene_6a_d5
+            jump scene_6a_d3
 
 
 # =========================================================
@@ -803,6 +803,19 @@ label scene_6a_d5:
         jump death_screen
 
 
+# =========================================================
+# Prendre le lance-roquette 
+# =========================================================
+label scene_6a_d6:
+    hide r
+    hide rh
+    scene bg black
+    with fade
+
+    n "Tu décides de prendre ce beau RPG-7 pour montrer à ces malfaiteurs qui est le boss."
+    stop music fadeout 1.0
+    $ renpy.movie_cutscene("videos/explosion_rocket.webm")
+    jump death_screen
 
 # =========================================================
 # rue de gauche
@@ -853,8 +866,8 @@ label scene_6b_d3:
     menu:
         "Refuser (mechant)":
             jump scene_6b_d5
-        "Acheter un fruit (c’est bien les vitamines)":
-            jump scene_6b_d6
+        "Acheter un fruit (c’est bien les vitamines)"
+            #jump scene_6b_d6
         "Acheter le tout (MrBeast challenge)"
             #jump scene_6b_d7
 
