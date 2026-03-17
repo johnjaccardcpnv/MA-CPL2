@@ -12,6 +12,7 @@ define m = Character("Homme aux toilette", color="#b94f08", what_prefix="“", w
 define h = Character("Hector", color="#ffffff")
 define n = Character("Narrateur")
 define rh = Character("Jennifer", color="#dd0a0a", what_prefix="“", what_suffix="”")
+define chef = Character("Chef", color="#a5a2a2", what_prefix="“", what_suffix="”")
 
 default qte_time = 3.0
 default qte_key = renpy.random.choice(["K_SPACE", "2", "1"])
@@ -45,6 +46,8 @@ image rh choc = "images/jennifer_choc.png"
 
 image b happy = "images/baboushka.png"  
 
+image chef happy = "images/chef.png"
+
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
 image bg bathroom = "images/bathroom.jpg"
@@ -66,6 +69,8 @@ image bg right_far = "images/right_far.png"
 image bg street_market = "images/street_market.png"
 
 image bg jennifer_camion = "images/Jennifer-camion_video_bg.png"
+
+image bg ramen_legend_outside = "images/ramen_legends.png"
 
  
 
@@ -154,6 +159,9 @@ screen qte_bar():
         timer 0.01 action Return(False)
 
 
+
+# Chapitre 1 - MATIN 
+
 # =========================================================
 # Le réveil
 # =========================================================
@@ -190,7 +198,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "test":
-            jump scene_6a_d4
+            jump scene_7
 
 
 # =========================================================
@@ -574,6 +582,9 @@ label scene_4c_c1:
     jump scene_5
 
 
+
+# Chapitre 2 - MIDI
+
 # =========================================================
 # Midi
 # =========================================================
@@ -855,6 +866,7 @@ label scene_6a_d5:
         n "Il regarde là où ils étaient, petit sourire."
         r "Hasta la vista…"
         r "les nulos."
+        jump scene_7
     else:
         jump death_screen
 
@@ -995,8 +1007,97 @@ label scene_6b_d5_2:
     jump death_screen
 
 
+# Chapitre 3 - SOIR 
+
+# =========================================================
+# Soir
+# =========================================================
+label scene_7:
+    scene bg street
+    show r happy at left_unzoomed
+    n "Tu continues à te promener, à regarder Tokyo, la ville la plus belle du monde (selon toi)."
+
+    menu:
+        "Rentrer chez toi":
+            # DUEL-HECTOR
+            return
+        "Faire un détour et surprise":
+            # GP-TOKYO
+            return
+        "Bouffer un truc":
+            # RAMEN LEGENDS
+            jump scene_8_e3
 
 
+
+# =========================================================
+# Bouffer un truc (RAMEN LEGENDS)
+# =========================================================
+label scene_8_e3:
+
+    scene bg street
+    show r happy at left_unzoomed
+
+    n "Tu marches."
+    n "Ton ventre fait"
+
+    play sound "audio/object/pelleteuse.mp3" volume 0.5
+    n "GRRRRRRRRR (bruit pelleteuse)"
+
+    r "Ok. Là c’est plus une faim, c’est une alerte nucléaire."
+
+    n "Tu vois une enseigne."
+    hide r
+    scene bg ramen_legend_outside
+    n "RAMEN LEGENDS – interdit dans 12 pays."
+
+    r "…incroyable."
+
+    scene bg street
+    show r happy at left_unzoomed
+
+    n "Tu rentres."
+
+    n "Le resto est vide."
+    n "Un seul client."
+    n "Qui pleure."
+
+    show chef happy at right_unzoomed
+    n "Le chef te fixe."
+
+    chef "Tu es sûr ?"
+    r "Non."
+    n "..."
+
+    r "Mais vas-y."
+
+    n "Quelques minutes plus tard..."
+    n "Le bol arrive."
+    n "Le ramen… bouge légèrement."
+
+    r "…il respire ou j’hallucine ?"
+    chef "Il est frais."
+    r "Trop frais là."
+
+    n "Le client à côté murmure de fuir"
+
+    r "Ça va aller."
+
+    n "Tu prends une bouchée."
+    n "SLURP"
+    n "Silence."
+
+    r "Hmmm… c’est pas ma…"
+
+    n "Tu as une envie pressante d’aller aux toilettes."
+
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/house_explode.webm") 
+    jump death_screen
 
 
 

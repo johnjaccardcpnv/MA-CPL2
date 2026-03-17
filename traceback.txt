@@ -1,14 +1,14 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-NameError: name 's' is not defined
+NameError: name 'chef' is not defined
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 637, in script
-    s "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
-Exception: Sayer 's' is not defined.
+  File "game/script.rpy", line 1057, in script
+    chef "Tu es sûr ?"
+Exception: Sayer 'chef' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -23,13 +23,13 @@ Traceback (most recent call last):
     return eval(bytecode, globals, locals)
            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<none>", line 1, in <module>
-NameError: name 's' is not defined
+NameError: name 'chef' is not defined
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 637, in script
-    s "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
+  File "game/script.rpy", line 1057, in script
+    chef "Tu es sûr ?"
   File "renpy/ast.py", line 2925, in execute
     Say.execute(self)
     ~~~~~~~~~~~^^^^^^
@@ -38,9 +38,9 @@ Traceback (most recent call last):
           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/ast.py", line 627, in eval_who
     raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 's' is not defined.
+Exception: Sayer 'chef' is not defined.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.5.2.26010301
 MA-CPL2 1.0
-Tue Mar 17 13:52:49 2026
+Tue Mar 17 14:54:18 2026
