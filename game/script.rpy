@@ -2,6 +2,7 @@
 # DÉCLARATIONS
 # =========================================================
 
+define f = Character("Francesco (serveur)", color="#008C45", what_prefix="“", what_suffix="”")
 define b = Character("Baboushka", color="#8b4513", what_prefix="“", what_suffix="”")
 define r = Character("Ren", color="#2a109c", what_prefix="“", what_suffix="”")
 define t = Character("Réceptionniste", color="#fc00e7", what_prefix="“", what_suffix="”")
@@ -63,6 +64,8 @@ image bg left_street = "images/left_street.jpg"
 image bg right_street = "images/right_street.png"
 image bg right_far = "images/right_far.png"
 image bg street_market = "images/street_market.png"
+
+image bg jennifer_camion = "images/Jennifer-camion_video_bg.png"
 
  
 
@@ -186,8 +189,8 @@ label start:
             jump scene_1b
         "Regarder ton téléphone":
             jump scene_1c
-        "DEBUG scene 6a":
-            jump scene_6a_d3
+        "test":
+            jump scene_6a_d4
 
 
 # =========================================================
@@ -603,7 +606,7 @@ label scene_6b_d2:
 
     show f normal at right_unzoomed
 
-    s "Votre pizza all-in-one exclusive pro-max plus pro limited edition est prête avec votre boisson surprise digne des dieux romains."
+    f "Votre pizza all-in-one exclusive pro-max plus pro limited edition est prête avec votre boisson surprise digne des dieux romains."
     n "Tu te baves par ce mot sublime que le serveur te dit."
 
     hide f
@@ -622,7 +625,7 @@ label scene_6b_d2:
     n "1 min après..."
 
     show f normal at right_unzoomed
-    s "Alors Monsieur, tout se passe à merv……"
+    f "Alors Monsieur, tout se passe à merv……"
     n "Le serveur n’a pas le temps de finir sa phrase que tu as tout mangé et apprécie la fin de ta boisson (frérot tu es bizarre)."
     r "C’était délicieux, je veux bien l’addition svp"
     n "Le serveur émerveillé par ce qu’il a vu, part et te ramene l’addition. "
@@ -633,9 +636,10 @@ label scene_6b_d2:
 
     n "Et là ……     108230,40 Yen Japonais"
     n "Mais tellement que tu es blindax, tu poses ta petite carte American Express Platium Pro Max Worldwide Obama Certified Edition et bim ça valide le paiement."
-    s "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
+    f "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
 
     hide r
+    hide f
     show r happy at truecenter
     show bg outdoor_restaurant
 
@@ -722,10 +726,20 @@ label scene_6a_d3:
     n "Eh oui t’es bientôt chez elle. Mais vous devez traverser la route." 
 
     n "Vous apercevez deux voitures qui approchent à grande vitesse."
+
+    hide r 
+    hide rh
+    hide bg street
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/Jennifer-camion_debut.webm") 
+    #video accident part 1
+    scene bg jennifer_camion
+    with fade
     n "Une des voitures se prend le poteau (le gros nul)."
     n "Le poteau se renvers."
 
-    #video accident part 1
+    n "Esquivez vite le poteau !"
+
     $ qte_time = 3.0
     $ result = renpy.call_screen("qte_bar")
 
@@ -738,8 +752,15 @@ label scene_6a_d3:
 
     n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
 
-    # Suite vidéo part 2
-    ### Jennifer à été slimed par les ops ###
+    hide bg jennifer_camion
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/Jennifer-camion_fin.webm") 
+
+    scene bg street
+    with fade
+    show r happy at left_unzoomed
+    with moveinleft
+    n "Jennifer à été slimed par les ops"
 
     n "Rempli de haine car ils ont ruiné ta date tu cours vers le camion militaire pour t’armer, et te venger sur les responsables de cet accident"
 
@@ -751,6 +772,41 @@ label scene_6a_d3:
         "Prendre le lance-roquette":
             jump scene_6a_d6
 
+
+# =========================================================
+# Boire avec modération
+# =========================================================
+label scene_6a_d4:    
+    scene bg bar
+    show r happy at left_unzoomed
+    with moveinleft
+    n "Tu passes un bon moment, tu sociabilises avec beaucoup de personnes (l’alcool ça aide…) et du coin de l’œil tu remarques une tête familière."
+    n "Tu décides d’aller vers cette personne et surprise c’est ta RH, Jennifer."
+    n "Comme tu as trop d’alcool dans le sang (en même temps tu forces), donc tu vas parler avec elle."
+    show rh normal at right_unzoomed
+    with moveinright
+    r "⍑ᔑᓭℸ ̣ ᒷ ᓭᓭᒷ ᓭᔑ⍊ᒷ ⎓ᔑ∷ᒲᔑ…"
+    rh "…hein ?"
+    r "⎓╎∷ᒷ ᔑᓭ! ᒲᔑᓭℸ ̣ ᒷ∷ ᒷリᓵ⍑ᔑリℸ ̣ !"
+    rh "Tu te fous de ma—"
+    r "ᒷ! ᒷ! ᓭ╎ꖎꖌ ℸ ̣ 𝙹⚍ᓵ⍑! "
+    n "CLAQUE."
+    hide rh
+    r "…ᒷ⍊ᔑᓭ╎𝙹リ ꖎᒷ⍊ᒷꖎ 0."
+    n "Là tu t’es pris un râteau de l’espace par Jennifer."
+    n "Pour oublier cette scène, tu décides de rejoindre une soirée random"
+
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/Project_X_with_REN.webm") 
+
+        # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/sensîbilisation.webm")   
+
+    jump death_screen
 
 # =========================================================
 # Prendre le fusil d’assaut 
@@ -822,7 +878,6 @@ label scene_6a_d6:
 # =========================================================
 label scene_6b_d4:
     scene bg left_street
-    show r happy at right_unzoomed
 
     n "Tu décides de prendre le chemin à gauche (parce que tu entends de la bonne musique)."
     n "Tu marches dans cette direction et tu arrives à coté d’une immense house party de malade."
@@ -843,7 +898,7 @@ label scene_6b_d3:
     scene bg right_street
     show r happy at left_unzoomed
 
-    n "Tu décides d’aller à droite et tu tombes sur cette magnifique rue nommé 真珠湾 (Shinjuwan)."
+    n "Tu décides d’aller à droite et tu tombes sur cette magnifique rue nommé Shinjuwan."
     n "Tu marches un petit moment et tu arrives dans cette street market vraiment sympa"
 
     hide bg right_street
@@ -899,6 +954,7 @@ label scene_6b_d5:
 # =========================================================
 # refus à la baboushka fin 1
 # =========================================================
+#WIP
 label scene_6b_d5_1:
 
     n "Tu tournes les talons et sprintes comme un dératé."
@@ -920,6 +976,9 @@ label scene_6b_d5_1:
 # refus à la baboushka fin 2
 # =========================================================
 label scene_6b_d5_2:
+    show r happy at left_unzoomed
+    show b happy at right_unzoomed
+    scene bg street_market
 
     r "OK OK désolé ! Vos fruits ont l’air incroyables !"
     n "La baboushka te regarde."
