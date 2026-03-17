@@ -2,6 +2,7 @@
 # DÉCLARATIONS
 # =========================================================
 
+define b = Character("Baboushka", color="#8b4513", what_prefix="“", what_suffix="”")
 define r = Character("Ren", color="#2a109c", what_prefix="“", what_suffix="”")
 define t = Character("Réceptionniste", color="#fc00e7", what_prefix="“", what_suffix="”")
 define j = Character("Jackson", color="#f707e3", what_prefix="“", what_suffix="”")
@@ -41,6 +42,8 @@ image h explose = "images/hector_explosion.png"
 image rh normal = "images/jennifer_pants.png"
 image rh choc = "images/jennifer_choc.png"
 
+image b happy = "images/baboushka.png"  
+
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
 image bg bathroom = "images/bathroom.jpg"
@@ -57,6 +60,8 @@ image bg black = Solid("#000")
 image bg gun_fight = "images/bg_combat.png"
 image bg gun_fight_end = "images/bg_combat_end.png"
 image bg left_street = "images/left_street.jpg"
+image bg right_street = "images/right_street.png"
+image street_market = "images/street_market.png"
  
 
 image bg death = "images/death.jpg"
@@ -889,7 +894,7 @@ label scene_6b_d5_1:
     n "Tu souris."
     r "Facile."
     n "Soudain…"
-    n "💥 CRASH"
+    n "CRASH"
     n "Tu te fais renverser par une camionnette de livraison de fruits."
 
     jump death_screen
