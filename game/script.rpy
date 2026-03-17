@@ -71,6 +71,8 @@ image bg street_market = "images/street_market.png"
 image bg jennifer_camion = "images/Jennifer-camion_video_bg.png"
 
 image bg ramen_legend_outside = "images/ramen_legends.png"
+image bg ramen_legend_inside = "images/ramen_legends_interior.png"
+
 
  
 
@@ -1057,6 +1059,8 @@ label scene_8_e3:
     show r happy at left_unzoomed
 
     n "Tu rentres."
+    scene bg ramen_legend_inside
+    show r happy at left_unzoomed
 
     n "Le resto est vide."
     n "Un seul client."
