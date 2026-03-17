@@ -61,7 +61,9 @@ image bg gun_fight = "images/bg_combat.png"
 image bg gun_fight_end = "images/bg_combat_end.png"
 image bg left_street = "images/left_street.jpg"
 image bg right_street = "images/right_street.png"
-image street_market = "images/street_market.png"
+image bg right_far = "images/right_far.png"
+image bg street_market = "images/street_market.png"
+
  
 
 image bg death = "images/death.jpg"
@@ -581,7 +583,7 @@ label scene_5:
         "Aller à ton bar préféré":
             jump scene_6a_d1
         "Aller dans un restaurant italien":
-            jump scene_6a_d2
+            jump scene_6b_d2
 
 # =========================================================
 # Restaurant
