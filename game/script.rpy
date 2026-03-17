@@ -55,6 +55,7 @@ image bg restaurant = "images/restaurant.jpg"
 image bg outdoor_restaurant = "images/outdoor_restaurant.png"
 image bg black = Solid("#000")
 image bg gun_fight = "images/bg_combat.png"
+image bg gun_fight_end = "images/bg_combat_end.png"
 image bg left_street = "images/left_street.jpg"
  
 
@@ -786,7 +787,8 @@ label scene_6a_d5:
         stop music fadeout 1.0
         $ renpy.movie_cutscene("videos/gun_fight.webm")
         play music "musics/mii.mp3" fadein 1.0 volume 0.3
-        #add image avant video mais sans les deux méchants
+        scene bg gun_fight_end
+        show r happy at left_unzoomed
         n "Il regarde là où ils étaient, petit sourire."
         r "Hasta la vista…"
         r "les nulos."
@@ -847,13 +849,13 @@ label scene_6b_d3:
         "Acheter un fruit (c’est bien les vitamines)":
             jump scene_6b_d6
         "Acheter le tout (MrBeast challenge)"
-            jump scene_6b_d7
+            #jump scene_6b_d7
 
 
 # =========================================================
 # refus à la baboushka
 # =========================================================
-label scene_6b_d5
+label scene_6b_d5:
     show r happy at left_unzoomed
     show b happy at right_unzoomed
     scene bg street_market
@@ -877,7 +879,7 @@ label scene_6b_d5
 # =========================================================
 # refus à la baboushka fin 1
 # =========================================================
-label scene_6b_d5_1
+label scene_6b_d5_1:
 
     n "Tu tournes les talons et sprintes comme un dératé."
     r "VIE SAUVE !"
@@ -897,7 +899,7 @@ label scene_6b_d5_1
 # =========================================================
 # refus à la baboushka fin 2
 # =========================================================
-label scene_6b_d5_2
+label scene_6b_d5_2:
 
     r "OK OK désolé ! Vos fruits ont l’air incroyables !"
     n "La baboushka te regarde."

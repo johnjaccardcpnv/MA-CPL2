@@ -2,7 +2,7 @@
 image shooter_bg = "images/combat.png"
 
 # joueur
-image player = "images/ren_legs.png"
+image player = "images/Ren_gun_nobg.png"
 
 define zoomed = 0.28
 define hitboxes = (577*zoomed)-40

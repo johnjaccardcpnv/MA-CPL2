@@ -165,6 +165,7 @@ define config.save_directory = "MA_CPL2-1770121984"
 
 define config.window_icon = "gui/window_icon.png"
 
+define config.developer = False
 
 ## Configuration de la compilation #############################################
 ##
