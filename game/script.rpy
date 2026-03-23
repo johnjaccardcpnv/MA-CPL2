@@ -13,6 +13,7 @@ define h = Character("Hector", color="#ffffff")
 define n = Character("Narrateur")
 define rh = Character("Jennifer", color="#dd0a0a", what_prefix="“", what_suffix="”")
 define chef = Character("Chef", color="#a5a2a2", what_prefix="“", what_suffix="”")
+define Max = Character("Max Verstappen", color="#f3e303", what_prefix="“", what_suffix="”")
 
 default qte_time = 3.0
 default qte_key = renpy.random.choice(["K_SPACE", "2", "1"])
@@ -20,12 +21,15 @@ default qte_key = renpy.random.choice(["K_SPACE", "2", "1"])
 # Props
 image drink = "images/drink.png"
 image pizza = "images/pizza.png"
+image peel = "images/peel.png"
+image max_dead = "images/max_death.png"
 
 # Sprites
 image r happy = "images/ren_legs.png"
 image r tel = "images/ren_tel.png"
 image r savon = "images/ren_savon.png"
 image r gun = "images/ren_gun_nobg.png"
+image r GP = "images/ren_gp.png"
 
 image t normal = "images/receptionniste.png"
 
@@ -47,6 +51,10 @@ image rh choc = "images/jennifer_choc.png"
 image b happy = "images/baboushka.png"  
 
 image chef happy = "images/chef.png"
+
+image Max happy = "images/max.png"
+
+image b cut = "images/baboushka_cut.png"
 
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
@@ -72,6 +80,16 @@ image bg jennifer_camion = "images/Jennifer-camion_video_bg.png"
 
 image bg ramen_legend_outside = "images/ramen_legends.png"
 image bg ramen_legend_inside = "images/ramen_legends_interior.png"
+
+image bg street_night = "images/street_night.png"
+image bg GP_choice1 = "images/GP_choice1.jpg"
+image bg gp_entry = "images/gp_entry.png"
+
+image bg run1 = "images/bg_scene 6b_d5_1/bg1.png"
+image bg run2 = "images/bg_scene 6b_d5_1/bg2.png"
+image bg run3 = "images/bg_scene 6b_d5_1/bg3.png"
+image bg run4 = "images/bg_scene 6b_d5_1/bg4.png"
+image bg run5 = "images/bg_scene 6b_d5_1/bg5.png"
 
 
  
@@ -200,7 +218,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "test":
-            jump scene_7
+            jump scene_6b_d3
 
 
 # =========================================================
@@ -913,7 +931,6 @@ label scene_6b_d3:
     show r happy at left_unzoomed
 
     n "Tu décides d’aller à droite et tu tombes sur cette magnifique rue nommé Shinjuwan."
-    n "Tu marches un petit moment et tu arrives dans cette street market vraiment sympa"
 
     hide bg right_street
     scene bg right_far
@@ -935,19 +952,19 @@ label scene_6b_d3:
     menu:
         "Refuser (mechant)":
             jump scene_6b_d5
-        "Acheter un fruit (c’est bien les vitamines)"
-            #jump scene_6b_d6
-        "Acheter le tout (MrBeast challenge)"
-            #jump scene_6b_d7
+        "Acheter un fruit (c’est bien les vitamines)":
+            jump scene_6b_d6
+        "Acheter le tout (MrBeast challenge)":
+            jump scene_6b_d7
 
 
 # =========================================================
 # refus à la baboushka
 # =========================================================
 label scene_6b_d5:
+    scene bg street_market
     show r happy at left_unzoomed
     show b happy at right_unzoomed
-    scene bg street_market
 
     n "La vieille baboushka te regarde avec un grand sourire."
     b "Comment puis-je vous aider jeune monsieur ?"
@@ -955,6 +972,10 @@ label scene_6b_d5:
     n "Le sourire disparaît."
     n "La baboushka se penche sous son stand."
     n "Elle sort un énorme couteau de cuisine."
+
+    hide b
+    show b cut at right_unzoomed
+
     b "Tu veux goûter… ou partir ?"
 
     menu:
@@ -968,17 +989,37 @@ label scene_6b_d5:
 # =========================================================
 # refus à la baboushka fin 1
 # =========================================================
-#WIP
 label scene_6b_d5_1:
+    scene black
 
     n "Tu tournes les talons et sprintes comme un dératé."
     r "VIE SAUVE !"
     n "Tu cours 10 mètres."
+
+    hide black
+    scene bg run1
+
     n "15 mètres."
+
+    hide run1
+    scene bg run2
+
     n "20 mètres."
+
+    hide run2
+    scene bg run3
+
     n "Tu souris."
+
+    hide run3
+    scene bg run4
+
     r "Facile."
     n "Soudain…"
+
+    hide run4
+    scene bg run5
+
     n "CRASH"
     n "Tu te fais renverser par une camionnette de livraison de fruits."
 
@@ -990,9 +1031,10 @@ label scene_6b_d5_1:
 # refus à la baboushka fin 2
 # =========================================================
 label scene_6b_d5_2:
+    scene bg street_market
     show r happy at left_unzoomed
     show b happy at right_unzoomed
-    scene bg street_market
+
 
     r "OK OK désolé ! Vos fruits ont l’air incroyables !"
     n "La baboushka te regarde."
@@ -1009,6 +1051,94 @@ label scene_6b_d5_2:
     jump death_screen
 
 
+# =========================================================
+# Acheter un fruit
+# =========================================================
+label scene_6b_d6:
+    scene bg street_market
+    show r happy at left_unzoomed
+    show b happy at right_unzoomed
+
+    n "La baboushka te regarde avec un sourire."
+    b "Comment puis-je vous aider jeune monsieur ?"
+    n "Tu observes les fruits."
+    n "Des pêches."
+    n "Des pommes."
+    n "Des fruits que tu n’as jamais vus de ta vie."
+    r "Hmm… je vais prendre… un fruit."
+    b "Un fruit ?"
+    r "Oui. Un fruit."
+    r "Version simple."
+    n "La baboushka hoche la tête comme si tu venais de prendre une décision très sage."
+    b "Bonne décision. Les vitamines sauvent des vies."
+    n "Elle te tend une pomme bien rouge."
+    r "Elle vient vraiment du Mont Fuji ?"
+    b "Oui."
+    b "Enfin… plus ou moins."
+    r "Plus ou moins comment ?"
+    b "Elle est passée devant une photo du Mont Fuji."
+    n "Tu réfléchis."
+    r "Ça compte."
+    n "Tu paies."
+    n "La baboushka te regarde croquer dans la pomme."
+    n "CRUNCH"
+    r "Ok…"
+    r "ça c’est une bonne pomme."
+    b "Je sais."
+    n "Tu continues de marcher dans le street market en mangeant tranquillement."
+    r "Peut-être que je devrais manger des fruits plus souvent…"
+    n "Une seconde passe."
+    r "Non."
+    r "Faut pas exagérer non plus."
+    n "Tu termines la pomme et regardes autour de toi."
+    n "Le marché est animé, les gens discutent, et l’odeur de nourriture flotte dans l’air."
+    n "Tu te dis que pour une fois…"
+    n "la journée n’est pas si catastrophique."
+    # pas de fin
+
+
+
+# =========================================================
+# Acheter un fruit
+# =========================================================
+label scene_6b_d7:
+    #wip
+    scene bg street_market
+    show r happy at left_unzoomed
+    show b happy at right_unzoomed
+
+    b "Que voulez-vous jeune monsieur ?"
+    n "Tu regardes les fruits… tranquille."
+    n "Puis au loin, tu vois quelqu’un avec une casquette et une caméra."
+    r "Attends… c’est pas… MrBeast ? "
+    n "Le gars arrive en courant."
+    n "Mais ce n’est pas Jimmy. (MrBeast)"
+    n "Il pointe la caméra vers toi."
+    y "HELLO !! I AM YI LONG MA !!"
+    r "OHHHH YI LONG MA !!!!!! "
+    n "Sans prévenir, il commence à te lancer de l’argent dessus."
+    y "RANDOM MAN GET MONEY !! "
+    n "Tu regardes les billets."
+    n "Puis la baboushka."
+    r "Bon… j’achète tout."
+    b "Tout ?"
+    r "Le stand…"
+    r "les fruits…"
+    r "et vous."
+    n "Silence."
+    b "Salaire correct ?"
+    r "Fruits illimités."
+    b "Marché conclu. "
+    n "Yi Long Ma regarde la caméra."
+    y "BEST VIDEO EVER."
+    r "Je voulais juste une pomme… "
+    # pas de fin
+
+
+
+
+
+ 
 # Chapitre 3 - SOIR 
 
 # =========================================================
@@ -1025,7 +1155,7 @@ label scene_7:
             return
         "Faire un détour et surprise":
             # GP-TOKYO
-            return
+            jump scene_8_e2
         "Bouffer un truc":
             # RAMEN LEGENDS
             jump scene_8_e3
@@ -1103,5 +1233,108 @@ label scene_8_e3:
     $ renpy.movie_cutscene("videos/house_explode.webm") 
     jump death_screen
 
+label scene_8_e2:
+    scene bg street_night
+    show r happy at left_unzoomed
+    n "Tu entends un bruit bizarre dans la ruelle à côté de toi."
+    n "Un moteur."
+    n "Puis un autre."
+    n "Puis plus rien."
+    n "Silence."
 
+    r "…ok. Encore un truc normal."
 
+    n "Tu t’approches."
+    n "La ruelle est sombre."
+    n "Une seule lumière clignote."
+    n "Et là—"
+    n "Un gars est appuyé contre une voiture éclatée."
+    n "Respiration lourde."
+    n "Tu t’approches."
+
+    r "Eh… ça va ?"
+    show Max happy at right_unzoomed
+    n "Le gars relève la tête."
+    n "C’est Max Verstappen !"
+
+    r "…non."
+    r "Non non non."
+
+    Max "J’ai… fait une erreur… au virage…"
+    
+    r "MAIS T’ES À TOKYO DANS UNE RUELLE ???"
+
+    n "Max ignore complètement."
+
+    Max "Écoute… la course… va commencer…"
+
+    n "Au loin, tu entends des moteurs."
+
+    r "Quelle course ??"
+
+    n "Max attrape ton bras."
+
+    Max "GP Tokyo…"
+    Max "ils ont besoin… d’un pilote… »"
+    show peel at truecenter
+    pause 3
+    hide peel
+
+    r "Moi je conduis un Peel P50 frère."
+
+    Max "Parfait."
+    Max "Tu n’as rien à perdre."
+
+    n "Silence."
+    n "Max te fixe."
+
+    Max "Je vais… te donner… mon skill… »"
+
+    r "NON—"
+    n "Max pose sa main sur ton front."
+
+    n "FLASH BLANC"
+    n "Bruits de moteurs"
+    n "Virages."
+    n "Accélérations."
+    n "Stratégies."
+    r "AAAAAAA—"
+    n "Silence."
+    n "Max tombe."
+
+    Max "Finish the race…"
+    
+    play sound "audio/character/max_death.mp3"
+    hide Max happy
+    show max_dead at right_unzoomed
+    pause 6
+    hide max_dead
+    n "Il meurt."
+    n "Long silence."
+    r "…bon."
+    r "Ça c’est arrivé."
+    hide r happy
+    scene bg gp_entry
+    with fade
+    show r GP at left_unzoomed
+    n "Là tu arrives au GP-Tokyo habillé en pilote et tu lock in. "
+    # Fond noir pour que rien ne cache la vidéo
+    scene black
+    with fade
+
+    # --- Lecture de la vidéo plein écran ---
+    $ renpy.movie_cutscene("videos/GP_1.webm") 
+
+    scene bg GP_choice1
+
+    menu:
+        "Rester en position":
+            scene black
+            with fade
+            # --- Lecture de la vidéo plein écran ---
+            $ renpy.movie_cutscene("videos/GP_1.webm")
+            ### Podium montage : https://www.youtube.com/watch?v=23rE-PE1-GA ###
+        "Dépasser":
+            # --- Lecture de la vidéo plein écran ---
+            $ renpy.movie_cutscene("videos/GP_crash.webm")
+            jump death_screen

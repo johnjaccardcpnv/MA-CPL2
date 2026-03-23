@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 864: choice menuitem expects a non-empty block.
-    "Acheter un fruit (c’est bien les vitamines)":
-                                                ^
+File "game/script.rpy", line 955: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Acheter un fruit (c’est bien les vitamines)"
+                                               ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue Mar 17 13:35:06 2026
+Mon Mar 23 14:49:06 2026
