@@ -8,10 +8,10 @@ label boss_final:
     call boss_combat(player_hp=150)
     
     if result == "win":
-        "INCROYABLE! Vous avez vaincu le boss final!"
+        "INCROYABLE! Vous avez vaincu Hector !"
         jump scene_10
     elif result == "lose":
-        "Vous êtes vaincu... GAME OVER."
+        "Vous êtes vaincu..."
         jump death_screen
     else:
         "Vous fuyez... mais Hector vous cavalle après."
@@ -45,18 +45,18 @@ default boss_config = {
 }
 
 default player_spells = [
-    {"name": "Soufflet de Don Gomes", "mp": 0, "power": 150, "image": "images/soufflet.png"},
+    {"name": "Soufflet de Don Gomes", "mp": 0, "power": 100, "image": "images/soufflet.png"},
     {"name": "Baboushka", "mp": 30,"power" : 200, "baboushka": True, "image": "images/baboushka.png"},
-    {"name": "Claque du daron", "mp": 15, "power": 100, "image": "images/main.png"},
-    {"name": "Poubelle d'Hector", "mp": 15, "heal": 150, "image": "images/poubelle.png"},
+    {"name": "Claque du daron", "mp": 15, "power": 150, "image": "images/main.png"},
+    {"name": "Poubelle d'Hector", "mp": 15, "heal": 40, "image": "images/poubelle.png"},
     {"name": "Potion HP", "potions": "hp", "image": "images/redbull.png"},
     {"name": "Potion MP", "potions": "mp", "image": "images/mana.png"},
     {"name": "Fuir", "image": "images/exit.png"}
 ]
 
 default boss_spells = [
-    {"name": "Jet de poubelles", "mp": 0, "power": 35},
-    {"name": "Patate de forain", "mp": 25, "power": 50}
+    {"name": "Jet de poubelles", "mp": 0, "power": 15},
+    {"name": "Patate de forain", "mp": 25, "power": 25}
 ]
 
 image bg_combat = "images/home_fight.png"

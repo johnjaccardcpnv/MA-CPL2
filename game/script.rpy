@@ -1507,7 +1507,7 @@ label scene_9:
     stop sound
     n "Le téléphone de l'homme mystérieux sonne."
     play sound "audio/object/phone_ring.mp3"
-    n "Your phone linging"
+    r "Your phone linging"
     hm "repond au tél."
     stop sound
     play sound "audio/character/ac_talk.mp3"
