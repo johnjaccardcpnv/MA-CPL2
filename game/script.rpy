@@ -1338,3 +1338,121 @@ label scene_8_e2:
             # --- Lecture de la vidéo plein écran ---
             $ renpy.movie_cutscene("videos/GP_crash.webm")
             jump death_screen
+
+
+
+# =========================================================
+# DUEL-HECTOR
+# =========================================================
+label scene_8_e1:
+    scene bg street_night
+    show r happy at left_unzoomed
+    n "Bonne idée."
+    n "Vu la journée que tu viens de vivre…"
+    n "(et que Jennifer est… plus vraiment disponible)"
+    n "tu décides de rentrer chez toi."
+    n "La nuit tombe sur Tokyo."
+    n "Les néons s’allument."
+    n "La ville devient encore plus belle."
+    r "Ok… journée bizarre… mais stylée."
+    n "Tu marches tranquillement."
+    n "Mais tu ne rentres pas n’importe comment. "
+    r "Damnnnnnnnn. Je vais pick up ma voiture de week-end."
+    ### Scene Fast and furious tokyo drift (la scène de Sean qui finit et voit Han avec sa caisse) et edit stylé de la Peel 50 ###
+    # https://www.youtube.com/watch?v=dJfSS0ZXYdo&t=35s
+    n "Mais ta voiture hyper stylée tombe en panne. "
+    n "(Son metal pipe et fumée noir) "
+    r "OHHHHHHHHHH MY GODDD. Ma voiture est kaputt."
+    n "T’as pas le choix, tu abandonnes ta voiture et tu rentres à pied. "
+    n "Mais tu croises une personne qui commence à t’interviewer."
+    ### Montage fortinaity babaji ###"
+    # =========================
+    # QUESTION 1
+    # =========================
+    scene black
+    $ renpy.movie_cutscene("videos/GP_1.webm") 
+
+    # Image freeze frame
+    scene bg q1_freeze
+    show r happy at left_unzoomed
+
+    n "Interviewer : Quelle est la capitale de la Lune ?"
+
+    menu:
+        "Fromage City":
+            pass
+        "Lunapolis":
+            jump death_screen
+
+    # =========================
+    # QUESTION 2
+    # =========================
+    scene black
+    $ renpy.movie_cutscene("videos/GP_1.webm") 
+
+    scene bg q2_freeze
+    show r happy at left_unzoomed
+
+    n "Interviewer : Combien font 2 + 2 ?"
+
+    menu:
+        "4":
+            pass
+        "22":
+            jump death_screen
+
+    # =========================
+    # QUESTION 3
+    # =========================
+    scene black
+    $ renpy.movie_cutscene("videos/GP_1.webm") 
+
+    scene bg q3_freeze
+    show r happy at left_unzoomed
+
+    n "Interviewer : Qui est le boss final de la vie ?"
+
+    menu:
+        "Toi":
+            pass
+        "Le grille-pain":
+            jump death_screen
+
+    # =========================
+    # SUCCESS
+    # =========================
+    n "L’interviewer te regarde, choqué."
+    n "Interviewer : ..."
+    n "Interviewer : Il est trop fort."
+    n "Tu continues ta route comme une légende."
+
+    return
+
+label scene_9:
+    n "Tu rentres enfin chez toi après cette journée chaotique mais enrichissante." 
+    n "Tu arrives ta porte mais tu vois qu’elle est ouverte. "
+    n "Perso : Wesh, sérieusement ????????"
+    n "Tu entres dedans et tu inspectes les lieux. Dans ton salon, tu remarques une silhouette." 
+    n "??? : Wassup Beijing…. (mettre extrait son)"
+    n "Le téléphone de ??? sonne. "
+    n "REN : Your phone linging (mettre extrait son https://www.youtube.com/watch?v=VLP_tnnDGSQ )"
+    n "??? repond au tél."
+    n "??? : (animal crossing backvoices fx) "
+    n "Oui je suis devant la cible, je vais le hagrah ."
+    n "Il sort de l’ombre et……. "
+    n "Ren : Hector………. ????"
+    n "Hector : Désolé mon viel ami, mais tu as trahis l’organisation. Je vais faire ça rapidement."
+    n "Ren : l’organisation te mens et t’utilise Hector. Ils veulent juste la formula secrète de m.crabs et après ils vont juste te marabouter "
+    n "Hector : M’en fou on me paye assez bien….. en pesos"
+    n "Ren : Hector. Tu ne sais même pas compter jusqu’à 10, il te paye 11 pesos et te dise que c’est beaucoup"
+    n "Hector : "
+    n "Ren : Bon,je sais que ça ne sert à rien de te convaince."
+    n "Hector : Ouais, ducoup on se tape ?"
+    n "Ren : Oue…"
+    n ""
+    n "FIGHT"
+    n ""
+    n "EASTER EGGS :"
+    n "-	Si le joueur a choisi auparavant d’acheter tout le magasin, même la babouchka. "
+    n "	Il a la possibilité d’utiliser Babouchka.  "
+
