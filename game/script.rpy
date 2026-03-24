@@ -230,7 +230,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "test":
-            jump scene_9
+            jump boss_final
 
 
 # =========================================================
@@ -241,7 +241,7 @@ label scene_1a:
 
     n "Tu te lèves d’un bond."
     n "Ton pied rencontre un LEGO."
-    n "Douleur."
+    n "Tu as mal."
     n "Direction la salle de bain."
 
 
@@ -271,12 +271,12 @@ label scene_1b:
     show r happy at left_unzoomed
 
     n "8h50."
-    n "Personne étrange devant chez toi."
+    n "Une personne étrange est devant chez toi."
     show h trash at right_far
     with moveinright 
 
     n "Regard de SDF."
-    n "Tu ignores."
+    n "Tu l'ignores."
 
     jump scene_2b
 
@@ -321,7 +321,7 @@ label scene_2c_b3:
     play sound "audio/object/vitre.mp3"
 
     n "Bruit étrange."
-    n "Tu ignores."
+    n "Tu l'ignores."
 
     n "La porte s’ouvre."
 
@@ -353,8 +353,8 @@ label scene_2c_b2:
     n "8h55."
     show h explose at right_unzoomed
     with moveinright
-    n "Personne étrange dans le couloir."
-    n "Il te lance regard de SDF"
+    n "Une personne étrange est dans le couloir"
+    n "Il te lance un regard de SDF"
     menu:
         "le regarder":
             h "T'habites ici ?"
@@ -428,8 +428,8 @@ label scene_2a:
     scene bg office
     show r happy at left_unzoomed
 
-    n "Tâches monotones."
-    n "Vue par la fenêtre."
+    n "Tu fais des tâches monotones"
+    n "Tu regardes par la fenêtre."
 
     # Fond noir pour que rien ne cache la vidéo
     scene black
@@ -1410,6 +1410,7 @@ label scene_8_e1:
             play sound "audio/gui/correct.mp3"
             pass
         "Fortinaity":
+            $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
 
     # =========================
@@ -1423,6 +1424,7 @@ label scene_8_e1:
 
     menu:
         "Babaji":
+            $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
         "XBoxX":
             play sound "audio/gui/correct.mp3"
@@ -1459,6 +1461,7 @@ label scene_8_e1:
             play sound "audio/gui/correct.mp3"
             pass
         "HypéreX":
+            $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
     # =========================
     # QUESTION 5
@@ -1472,6 +1475,7 @@ label scene_8_e1:
 
     menu:
         "Logitich":
+            $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
         "grandtheffidididi":
             play sound "audio/gui/correct.mp3"

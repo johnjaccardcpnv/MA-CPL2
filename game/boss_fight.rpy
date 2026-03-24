@@ -39,7 +39,7 @@ default boss_config = {
     "name": "HECTOR", 
     "max_hp": 600,
     "max_mp": 150,
-    "atk": 40,
+    "atk": 35,
     "defense": 18,
     "image": "images/stand_hector_katana.png"
 }
@@ -55,8 +55,8 @@ default player_spells = [
 ]
 
 default boss_spells = [
-    {"name": "Jet de poubelles", "mp": 0, "power": 15},
-    {"name": "Patate de forain", "mp": 25, "power": 25}
+    {"name": "Jet de poubelles", "mp": 0, "power": 10},
+    {"name": "Patate de forain", "mp": 25, "power": 20}
 ]
 
 image bg_combat = "images/home_fight.png"
@@ -118,7 +118,7 @@ init python:
         
         if name == "Potion HP" and potions_hp > 0:
             potions_hp -= 1
-            heal = min(player_config["max_hp"], 100)
+            heal = 100
             player_stats["hp"] = min(player_config["max_hp"], get_hp_display(player_stats) + heal)
             add_log("{} utilise {} (x{})! +{} HP".format(player_config["name"], name, potions_hp, heal))
             return True
@@ -222,8 +222,8 @@ screen player_menu():
                             xsize 100 ysize 100
                             add player_spells[4]["image"] xalign 0.5 yalign 0.5
                         text "Potion HP\n(x[potions_hp])" size 18 bold True xalign 0.5 color "#ffffff"
-                    action If(potions_hp > 0, Function(player_turn, 3), NullAction())
-                
+                    action If(potions_hp > 0, Function(player_turn, 4), NullAction())
+
                 button:
                     xsize 180 ysize 160
                     background Frame("blank", 10, 10)
@@ -233,7 +233,7 @@ screen player_menu():
                             xsize 100 ysize 100
                             add player_spells[5]["image"] xalign 0.5 yalign 0.5
                         text "Potion PM\n(x[potions_mp])" size 18 bold True xalign 0.5 color "#ffffff"
-                    action If(potions_mp > 0, Function(player_turn, 4), NullAction())
+                    action If(potions_mp > 0, Function(player_turn, 5), NullAction())
                 
                 button:
                     xsize 180 ysize 160
