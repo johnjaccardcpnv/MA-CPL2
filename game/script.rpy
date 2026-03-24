@@ -14,6 +14,9 @@ define n = Character("Narrateur")
 define rh = Character("Jennifer", color="#dd0a0a", what_prefix="“", what_suffix="”")
 define chef = Character("Chef", color="#a5a2a2", what_prefix="“", what_suffix="”")
 define Max = Character("Max Verstappen", color="#f3e303", what_prefix="“", what_suffix="”")
+define y = Character("Yi-Long Ma", color="#69641b", what_prefix="“", what_suffix="”")
+define hm = Character("Homme mystérieux")
+
 
 default qte_time = 3.0
 default qte_key = renpy.random.choice(["K_SPACE", "2", "1"])
@@ -23,6 +26,7 @@ image drink = "images/drink.png"
 image pizza = "images/pizza.png"
 image peel = "images/peel.png"
 image max_dead = "images/max_death.png"
+image hector_dumb = "images/hector_dumb.png"
 
 # Sprites
 image r happy = "images/ren_legs.png"
@@ -55,6 +59,9 @@ image chef happy = "images/chef.png"
 image Max happy = "images/max.png"
 
 image b cut = "images/baboushka_cut.png"
+
+image y normal = "images/yi-long-ma"
+ 
 
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
@@ -91,8 +98,14 @@ image bg run3 = "images/bg_scene 6b_d5_1/bg3.png"
 image bg run4 = "images/bg_scene 6b_d5_1/bg4.png"
 image bg run5 = "images/bg_scene 6b_d5_1/bg5.png"
 
+image bg q1_freeze = "images/quizz_1.jpg"
+image bg q2_freeze = "images/quizz_2.jpg"
+image bg q3_freeze = "images/quizz_3.jpg"
+image bg q4_freeze = "images/quizz_4.jpg"
+image bg q5_freeze = "images/quizz_5.jpg"
 
- 
+image bg opened_door = "images/open_door.png"
+image bg inside_door = "images/home_fight.png"
 
 image bg death = "images/death.jpg"
 
@@ -187,7 +200,6 @@ screen qte_bar():
 # =========================================================
 
 label start:
-
     scene bg black
     with fade
 
@@ -218,7 +230,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "test":
-            jump scene_8_e2
+            jump scene_8_e1
 
 
 # =========================================================
@@ -1094,7 +1106,8 @@ label scene_6b_d6:
     n "Le marché est animé, les gens discutent, et l’odeur de nourriture flotte dans l’air."
     n "Tu te dis que pour une fois…"
     n "la journée n’est pas si catastrophique."
-    # pas de fin
+
+    jump scene_7
 
 
 
@@ -1114,11 +1127,20 @@ label scene_6b_d7:
     n "Le gars arrive en courant."
     n "Mais ce n’est pas Jimmy. (MrBeast)"
     n "Il pointe la caméra vers toi."
+
+    hide b
+    $ renpy.movie_cutscene("videos/Yi_long_ma.webm")
+    show y normal at right_unzoomed
+
     y "HELLO !! I AM YI LONG MA !!"
     r "OHHHH YI LONG MA !!!!!! "
     n "Sans prévenir, il commence à te lancer de l’argent dessus."
     y "RANDOM MAN GET MONEY !! "
     n "Tu regardes les billets."
+
+    hide y
+    show b happy at right_unzoomed
+
     n "Puis la baboushka."
     r "Bon… j’achète tout."
     b "Tout ?"
@@ -1129,12 +1151,16 @@ label scene_6b_d7:
     b "Salaire correct ?"
     r "Fruits illimités."
     b "Marché conclu. "
+
+    $ unlock_baboushka = 1
+    hide b
+    show y normal at right_unzoomed
+
     n "Yi Long Ma regarde la caméra."
     y "BEST VIDEO EVER."
     r "Je voulais juste une pomme… "
-    # pas de fin
 
-
+    jump scene_7
 
 
 
@@ -1152,7 +1178,7 @@ label scene_7:
     menu:
         "Rentrer chez toi":
             # DUEL-HECTOR
-            return
+            jump scene_8_e1
         "Faire un détour et surprise":
             # GP-TOKYO
             jump scene_8_e2
@@ -1329,10 +1355,9 @@ label scene_8_e2:
 
     menu:
         "Rester en position":
-            scene black
-            with fade
             # --- Lecture de la vidéo plein écran ---
-            $ renpy.movie_cutscene("videos/GP_1.webm")
+            $ renpy.movie_cutscene("videos/GP_win.webm")
+            jump scene_9
             ### Podium montage : https://www.youtube.com/watch?v=23rE-PE1-GA ###
         "Dépasser":
             # --- Lecture de la vidéo plein écran ---
@@ -1358,8 +1383,11 @@ label scene_8_e1:
     n "Tu marches tranquillement."
     n "Mais tu ne rentres pas n’importe comment. "
     r "Damnnnnnnnn. Je vais pick up ma voiture de week-end."
-    ### Scene Fast and furious tokyo drift (la scène de Sean qui finit et voit Han avec sa caisse) et edit stylé de la Peel 50 ###
-    # https://www.youtube.com/watch?v=dJfSS0ZXYdo&t=35s
+    scene black
+    $ renpy.movie_cutscene("videos/topgun.webm") 
+    scene bg street_night
+    with fade
+    show r happy at left_unzoomed
     n "Mais ta voiture hyper stylée tombe en panne. "
     n "(Son metal pipe et fumée noir) "
     r "OHHHHHHHHHH MY GODDD. Ma voiture est kaputt."
@@ -1370,89 +1398,137 @@ label scene_8_e1:
     # QUESTION 1
     # =========================
     scene black
-    $ renpy.movie_cutscene("videos/GP_1.webm") 
+    $ renpy.movie_cutscene("videos/quizz_1.webm") 
 
     # Image freeze frame
     scene bg q1_freeze
-    show r happy at left_unzoomed
 
-    n "Interviewer : Quelle est la capitale de la Lune ?"
+    n "Fortinaity or babaji ?"
 
     menu:
-        "Fromage City":
+        "Babaji":
+            play sound "audio/gui/correct.mp3"
             pass
-        "Lunapolis":
+        "Fortinaity":
             jump death_screen
 
     # =========================
     # QUESTION 2
     # =========================
-    scene black
-    $ renpy.movie_cutscene("videos/GP_1.webm") 
+    $ renpy.movie_cutscene("videos/quizz_2.webm") 
 
     scene bg q2_freeze
-    show r happy at left_unzoomed
 
-    n "Interviewer : Combien font 2 + 2 ?"
+    n "Babaji or XBoxX"
 
     menu:
-        "4":
-            pass
-        "22":
+        "Babaji":
             jump death_screen
+        "XBoxX":
+            play sound "audio/gui/correct.mp3"
+            pass
+            
 
     # =========================
     # QUESTION 3
     # =========================
-    scene black
-    $ renpy.movie_cutscene("videos/GP_1.webm") 
+    $ renpy.movie_cutscene("videos/quizz_3.webm") 
 
     scene bg q3_freeze
-    show r happy at left_unzoomed
 
-    n "Interviewer : Qui est le boss final de la vie ?"
+    n "balahstation5 or XboxX"
 
     menu:
-        "Toi":
+        "balahstation5":
+            play sound "audio/gui/correct.mp3"
             pass
-        "Le grille-pain":
+        "XboxX":
+            play sound "audio/gui/correct.mp3"
+            pass
+    # =========================
+    # QUESTION 4
+    # =========================
+    $ renpy.movie_cutscene("videos/quizz_4.webm") 
+
+    scene bg q4_freeze
+
+    n "Logitich or HypéreX"
+
+    menu:
+        "Logitich":
+            play sound "audio/gui/correct.mp3"
+            pass
+        "HypéreX":
             jump death_screen
+    # =========================
+    # QUESTION 5
+    # =========================
+    scene black
+    $ renpy.movie_cutscene("videos/quizz_5.webm") 
+
+    scene bg q5_freeze
+
+    n "Logitich or grandtheffidididi"
+
+    menu:
+        "Logitich":
+            jump death_screen
+        "grandtheffidididi":
+            play sound "audio/gui/correct.mp3"
+            pass
 
     # =========================
     # SUCCESS
     # =========================
     n "L’interviewer te regarde, choqué."
-    n "Interviewer : ..."
-    n "Interviewer : Il est trop fort."
     n "Tu continues ta route comme une légende."
 
-    return
+    jump scene_9
+
+# =========================================================
+# Retour à la maison (DUEL HECTOR)
+# =========================================================
 
 label scene_9:
+    scene bg street_night
+    with fade
+    show r happy at left_unzoomed
     n "Tu rentres enfin chez toi après cette journée chaotique mais enrichissante." 
-    n "Tu arrives ta porte mais tu vois qu’elle est ouverte. "
-    n "Perso : Wesh, sérieusement ????????"
+    scene bg opened_door
+    with fade
+    n "Tu arrives ta porte mais tu vois qu’elle est ouverte."
+    r "Wesh, sérieusement ????????"
+    scene bg inside_door
+    with fade
+    show r happy at left_unzoomed
     n "Tu entres dedans et tu inspectes les lieux. Dans ton salon, tu remarques une silhouette." 
-    n "??? : Wassup Beijing…. (mettre extrait son)"
-    n "Le téléphone de ??? sonne. "
-    n "REN : Your phone linging (mettre extrait son https://www.youtube.com/watch?v=VLP_tnnDGSQ )"
-    n "??? repond au tél."
-    n "??? : (animal crossing backvoices fx) "
-    n "Oui je suis devant la cible, je vais le hagrah ."
+    play sound "audio/character/beijing.mp3"
+    hm "Wassup Beijing…."
+    stop sound
+    n "Le téléphone de l'homme mystérieux sonne."
+    play sound "audio/object/phone_ring.mp3"
+    n "Your phone linging"
+    hm "repond au tél."
+    stop sound
+    play sound "audio/character/ac_talk.mp3"
+    pause 3
+    stop sound
+    hm "Oui je suis devant la cible, je vais le hagrah ."
     n "Il sort de l’ombre et……. "
-    n "Ren : Hector………. ????"
-    n "Hector : Désolé mon viel ami, mais tu as trahis l’organisation. Je vais faire ça rapidement."
-    n "Ren : l’organisation te mens et t’utilise Hector. Ils veulent juste la formula secrète de m.crabs et après ils vont juste te marabouter "
-    n "Hector : M’en fou on me paye assez bien….. en pesos"
-    n "Ren : Hector. Tu ne sais même pas compter jusqu’à 10, il te paye 11 pesos et te dise que c’est beaucoup"
-    n "Hector : "
-    n "Ren : Bon,je sais que ça ne sert à rien de te convaince."
-    n "Hector : Ouais, ducoup on se tape ?"
-    n "Ren : Oue…"
-    n ""
-    n "FIGHT"
-    n ""
-    n "EASTER EGGS :"
-    n "-	Si le joueur a choisi auparavant d’acheter tout le magasin, même la babouchka. "
-    n "	Il a la possibilité d’utiliser Babouchka.  "
+    r "Hector………. ????"
+    show h normal at right_unzoomed
+    h "Désolé mon viel ami, mais tu as trahis l’organisation. Je vais faire ça rapidement."
+    r "l’organisation te mens et t’utilise Hector. Ils veulent juste la formula secrète de m.crabs et après ils vont juste te marabouter"
+    h "M’en fou on me paye assez bien….. en pesos"
+    r "Hector. Tu ne sais même pas compter jusqu’à 10, il te paye 11 pesos et te dise que c’est beaucoup"
+    show hector_dumb at right_unzoomed
+    pause 6
+    hide hector_dumb
+    h "..."
+    r "Bon,je sais que ça ne sert à rien de te convaince."
+    h "Ouais, ducoup on se tape ?"
+    r "Oue…"
+    jump boss_final
+
+    
 
