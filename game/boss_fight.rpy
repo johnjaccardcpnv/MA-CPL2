@@ -14,7 +14,9 @@ label boss_final:
         "Vous êtes vaincu... GAME OVER."
         jump death_screen
     else:
-        "Vous fuyez... mais le boss vous pourchasse!"
+        "Vous fuyez... mais Hector vous cavalle après."
+        "Vous vous prenez le tapis et tomber par terre."
+        "Looser va fallait pas fuir"
         jump death_screen
 
 # VARIABLES À MODIFIER
@@ -30,7 +32,7 @@ default player_config = {
     "max_mp": 80,
     "atk": 28,
     "defense": 12,
-    "image": "images/ren_gun_nobg.png"
+    "image": "images/attack_ren_katana.png"
 }
 
 default boss_config = {
@@ -39,7 +41,7 @@ default boss_config = {
     "max_mp": 150,
     "atk": 40,
     "defense": 18,
-    "image": "images/hector_debout.png"
+    "image": "images/stand_hector_katana.png"
 }
 
 default player_spells = [

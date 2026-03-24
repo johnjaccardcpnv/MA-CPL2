@@ -230,7 +230,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "test":
-            jump scene_8_e1
+            jump scene_9
 
 
 # =========================================================
