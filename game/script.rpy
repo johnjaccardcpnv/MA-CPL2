@@ -1,4 +1,11 @@
-﻿# =========================================================
+﻿# chercher le devices d'utilisation
+init python:
+    is_mobile = renpy.android or renpy.ios          # APK Android / iOS
+    is_web    = bool(renpy.emscripten)              # version navigateur
+    is_mobile_or_web = renpy.mobile                 # Android, iOS ou web
+
+
+# =========================================================
 # DÉCLARATIONS
 # =========================================================
 
@@ -234,6 +241,11 @@ label start:
             jump scene_1c
         "Tests uniquement - directement au soir":
             jump scene_7
+        "6a d3":
+            jump scene_6a_d3
+        "6a d5":
+            jump scene_6a_d5
+        
 
 
 # =========================================================
@@ -794,8 +806,11 @@ label scene_6a_d3:
 
     n "Esquivez vite le poteau !"
 
-    $ qte_time = 3.0
-    $ result = renpy.call_screen("qte_bar")
+    if is_mobile:
+        pass
+    else:
+        $ qte_time = 3.0
+        $ result = renpy.call_screen("qte_bar")
 
     if result:
         n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
@@ -895,8 +910,14 @@ label scene_6a_d5:
     
     play music "musics/gun_theme.mp3" fadein 1.0 volume 0.8
     pause 2.0
-
-    $result = renpy.call_screen("shooter_minigame")
+    if is_web:
+        pass
+    else:
+        $ quick_menu = False
+        $ _rollback = False
+        $result = renpy.call_screen("shooter_minigame")
+        $ quick_menu = True
+        $ _rollback = True
 
 
     if result == "win":
@@ -1352,7 +1373,7 @@ label scene_8_e2:
     show max_dead at right_unzoomed
     pause 6
     hide max_dead
-    n "Il meurt."Fohy
+    n "Il meurt."
     n "Long silence."
     r "…bon."
     r "Ça c’est arrivé."
