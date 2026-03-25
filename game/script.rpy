@@ -432,8 +432,8 @@ label scene_2a:
     
 
     n "Tu arrives à la réception."
-    n "Une réceptionniste te fait un clin d’œil."
     play sound "audio/character/ohyeah.mp3" volume 0.8
+    n "Une réceptionniste te fait un clin d’œil."
 
     scene bg office
     show r happy at left_unzoomed
@@ -1352,7 +1352,7 @@ label scene_8_e2:
     show max_dead at right_unzoomed
     pause 6
     hide max_dead
-    n "Il meurt."
+    n "Il meurt."Fohy
     n "Long silence."
     r "…bon."
     r "Ça c’est arrivé."
