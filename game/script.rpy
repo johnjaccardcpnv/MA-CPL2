@@ -27,6 +27,7 @@ image pizza = "images/pizza.png"
 image peel = "images/peel.png"
 image max_dead = "images/max_death.png"
 image hector_dumb = "images/hector_dumb.png"
+image flash = "images/white_flash.png"
 
 # Sprites
 image r happy = "images/ren_legs.png"
@@ -60,13 +61,15 @@ image Max happy = "images/max.png"
 
 image b cut = "images/baboushka_cut.png"
 
-image y normal = "images/yi-long-ma"
+image y normal = "images/yi-long-ma.png"
  
 
 # Backgrounds
 image bg bedroom = "images/bedroom.jpg"
 image bg bathroom = "images/bathroom.jpg"
 image bg hallway = "images/hallway.jpg"
+image bg lego = "images/lego.png"
+
 image bg street = "images/street.png"
 image bg office = "images/office.png"
 image bg reception = "images/reception.png"
@@ -229,8 +232,8 @@ label start:
             jump scene_1b
         "Regarder ton téléphone":
             jump scene_1c
-        "test":
-            jump boss_final
+        "Tests uniquement - directement au soir":
+            jump scene_7
 
 
 # =========================================================
@@ -240,8 +243,14 @@ label start:
 label scene_1a:
 
     n "Tu te lèves d’un bond."
+    hide r happy
+    hide bg bedroom
+    scene bg lego
     n "Ton pied rencontre un LEGO."
     n "Tu as mal."
+    hide bg lego
+    scene bg bedroom
+    show r happy at left_unzoomed
     n "Direction la salle de bain."
 
 
@@ -424,6 +433,7 @@ label scene_2a:
 
     n "Tu arrives à la réception."
     n "Une réceptionniste te fait un clin d’œil."
+    play sound "audio/character/ohyeah.mp3" volume 0.8
 
     scene bg office
     show r happy at left_unzoomed
@@ -622,7 +632,8 @@ label scene_4c_c1:
 # =========================================================
 label scene_5:
     
-    scene bg office
+    scene bg street
+    with fade
     show r happy at left_unzoomed
     n "Tu décides d’aller manger quelque part (parce que tu as faim…)."
     menu:
@@ -1303,7 +1314,9 @@ label scene_8_e2:
     Max "GP Tokyo…"
     Max "ils ont besoin… d’un pilote… »"
     show peel at truecenter
+    play sound "audio/object/car_goofy.mp3"
     pause 3
+    stop sound
     hide peel
 
     r "Moi je conduis un Peel P50 frère."
@@ -1320,6 +1333,10 @@ label scene_8_e2:
     n "Max pose sa main sur ton front."
 
     n "FLASH BLANC"
+    show flash at truecenter
+    pause 1.5
+    hide flash
+    
     n "Bruits de moteurs"
     n "Virages."
     n "Accélérations."
@@ -1389,7 +1406,9 @@ label scene_8_e1:
     with fade
     show r happy at left_unzoomed
     n "Mais ta voiture hyper stylée tombe en panne. "
+    play sound "audio/object/metalpipe.mp3" volume 0.5
     n "(Son metal pipe et fumée noir) "
+    stop sound
     r "OHHHHHHHHHH MY GODDD. Ma voiture est kaputt."
     n "T’as pas le choix, tu abandonnes ta voiture et tu rentres à pied. "
     n "Mais tu croises une personne qui commence à t’interviewer."
@@ -1407,11 +1426,12 @@ label scene_8_e1:
 
     menu:
         "Babaji":
-            play sound "audio/gui/correct.mp3"
-            pass
-        "Fortinaity":
             $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
+
+        "Fortinaity":
+            play sound "audio/gui/correct.mp3"
+            pass
 
     # =========================
     # QUESTION 2
@@ -1438,13 +1458,13 @@ label scene_8_e1:
 
     scene bg q3_freeze
 
-    n "balahstation5 or XboxX"
+    n "balahstation5 or XboxeXeXeXeX"
 
     menu:
         "balahstation5":
             play sound "audio/gui/correct.mp3"
             pass
-        "XboxX":
+        "XboxeXeXeXeX":
             play sound "audio/gui/correct.mp3"
             pass
     # =========================
@@ -1454,19 +1474,18 @@ label scene_8_e1:
 
     scene bg q4_freeze
 
-    n "Logitich or HypéreX"
+    n "Logitich or HypéreXeXeXeX"
 
     menu:
         "Logitich":
             play sound "audio/gui/correct.mp3"
             pass
-        "HypéreX":
+        "HypéreXeXeXeX":
             $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
     # =========================
     # QUESTION 5
     # =========================
-    scene black
     $ renpy.movie_cutscene("videos/quizz_5.webm") 
 
     scene bg q5_freeze
@@ -1526,7 +1545,9 @@ label scene_9:
     h "M’en fou on me paye assez bien….. en pesos"
     r "Hector. Tu ne sais même pas compter jusqu’à 10, il te paye 11 pesos et te dise que c’est beaucoup"
     show hector_dumb at right_unzoomed
+    play sound "audio/character/gne.mp3"
     pause 6
+    stop sound
     hide hector_dumb
     h "..."
     r "Bon,je sais que ça ne sert à rien de te convaince."
