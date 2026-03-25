@@ -711,7 +711,7 @@ label scene_6b_d2:
 # Aller à ton bar préféré 
 # =========================================================
 label scene_6a_d1:
-    scene bg office
+    scene bg street
     show r happy at left_unzoomed
     n "Tu décides d’aller à ton bar préféré. "
 
