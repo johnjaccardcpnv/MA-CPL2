@@ -241,10 +241,6 @@ label start:
             jump scene_1c
         "Tests uniquement - directement au soir":
             jump scene_7
-        "6a d3":
-            jump scene_6a_d3
-        "6a d5":
-            jump scene_6a_d5
         
 
 
