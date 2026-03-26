@@ -233,7 +233,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "Tests uniquement - directement au soir":
-            jump boss_final
+            jump scene_7
         
 
 

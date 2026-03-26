@@ -48,12 +48,12 @@ default boss_config = {
 }
 
 default player_spells = [
-    {"name": "Soufflet de Don Gomes", "mp": 0, "power": 100,"desc": "Gros soufflet physique.\nDMG:100\nPM:0", "image": "images/soufflet.png"},
-    {"name": "Baboushka", "mp": 30,"power" : 200,"desc": "Gros soufflet physique. 0 PM, dégâts élevés.", "baboushka": True, "image": "images/baboushka.png"},
-    {"name": "Claque du daron", "mp": 15, "power": 150,"desc": "Gros soufflet physique. 0 PM, dégâts élevés.", "image": "images/main.png"},
-    {"name": "Poubelle d'Hector", "mp": 15, "heal": 40,"desc": "Gros soufflet physique. 0 PM, dégâts élevés.", "image": "images/poubelle.png"},
-    {"name": "Potion HP", "potions": "hp","desc": "Gros soufflet physique. 0 PM, dégâts élevés.", "image": "images/redbull.png"},
-    {"name": "Potion MP", "potions": "mp","desc": "Gros soufflet physique. 0 PM, dégâts élevés.", "image": "images/mana.png"},
+    {"name": "Soufflet de Don Gomes", "mp": 0, "power": 100,"desc": "Gros soufflet physique.\nDMG:100", "image": "images/soufflet.png"},
+    {"name": "Baboushka", "mp": 30,"power" : 200,"desc": "Son pouvoir vous éblouit mais vous ne pouvez l'utiliser qu'une seule fois.\nDMG:200", "baboushka": True, "image": "images/baboushka.png"},
+    {"name": "Claque du daron", "mp": 15, "power": 150,"desc": "Le pouvoir du daron coule dans vos veines.\nDMG:150\nPM:15", "image": "images/main.png"},
+    {"name": "Poubelle d'Hector", "mp": 40, "heal": 40,"desc": "Manger ces déchets vous guéri étrangement.\nPV:40\nPM:40", "image": "images/poubelle.png"},
+    {"name": "Potion HP", "potions": "hp","desc": "Redbull donne des ailes.\nPV:100", "image": "images/redbull.png"},
+    {"name": "Potion MP", "potions": "mp","desc": "Brevage étrange vous redonnant de la magie.\nPM:50", "image": "images/mana.png"},
     {"name": "Fuir","desc": "Seule une sombre merde ferait cela.", "image": "images/exit.png"}
 ]
 
