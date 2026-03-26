@@ -18,6 +18,7 @@ image enemy_2_small = At("enemy_2", Transform(zoom=zoomed))
 # projectile (facultatif, sinon Solid)
 image bullet = Solid("#ff0000")
 
+default minigame_result = None
 
 init python:
 
@@ -367,15 +368,16 @@ init python:
         game.shoot(direction)
 
     def update_shooter(game):
+        global minigame_result
         if renpy.android or renpy.ios:
             game.set_move(game.mobile_up, game.mobile_down, game.mobile_left, game.mobile_right)
 
-        result = game.update()
+        minigame_result = game.update()
         renpy.restart_interaction()
 
-        if result == "win" or result == "lose":
+        if minigame_result == "win" or minigame_result == "lose":
             renpy.hide_screen("shooter_minigame")
-            return result
+            return minigame_result
         return None
 
 

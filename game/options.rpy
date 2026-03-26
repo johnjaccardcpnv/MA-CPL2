@@ -101,6 +101,13 @@ define config.after_load_transition = None
 
 define config.end_game_transition = None
 
+## chercher le devices d'utilisation
+init python:
+    is_mobile = renpy.android or renpy.ios          # APK Android / iOS
+    is_web    = bool(renpy.emscripten)              # version navigateur
+    is_mobile_or_web = renpy.mobile                 # Android, iOS ou web
+
+
 
 ## Il n’y a pas de variable pour configurer la transition en début de partie. À
 ## la place, utilisez un état de transition juste après l’affichage de la toute

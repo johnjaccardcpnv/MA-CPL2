@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1367: end of line expected.
-    n "Il meurt."Fohy
-                 ^
+File "game/boss_fight.rpy", line 92: expected an indented block after function definition on line 22
+    global potions_hp, potions_mp, baboushka_used, unlock_baboushka
+        ^^^^^^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Wed Mar 25 18:49:14 2026
+Thu Mar 26 10:48:43 2026

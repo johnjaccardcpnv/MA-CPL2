@@ -1,11 +1,4 @@
-﻿# chercher le devices d'utilisation
-init python:
-    is_mobile = renpy.android or renpy.ios          # APK Android / iOS
-    is_web    = bool(renpy.emscripten)              # version navigateur
-    is_mobile_or_web = renpy.mobile                 # Android, iOS ou web
-
-
-# =========================================================
+﻿# =========================================================
 # DÉCLARATIONS
 # =========================================================
 
@@ -240,7 +233,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "Tests uniquement - directement au soir":
-            jump scene_7
+            jump boss_final
         
 
 
@@ -807,11 +800,10 @@ label scene_6a_d3:
     else:
         $ qte_time = 3.0
         $ result = renpy.call_screen("qte_bar")
-
-    if result:
-        n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
-    else:
-        jump death_screen
+        if result:
+            n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
+        else:
+            jump death_screen
 
     # S’il reussi à esquiver :
 
@@ -904,23 +896,9 @@ label scene_6a_d5:
     # Bruit de tirs. Les deux gars disparaissent de l’écran
     show bg gun_fight
     
-    play music "musics/gun_theme.mp3" fadein 1.0 volume 0.8
     pause 2.0
     if is_web:
-        pass
-    else:
-        $ quick_menu = False
-        $ _rollback = False
-        $result = renpy.call_screen("shooter_minigame")
-        $ quick_menu = True
-        $ _rollback = True
-
-
-    if result == "win":
-        pause 0.1    
-        stop music fadeout 1.0
         $ renpy.movie_cutscene("videos/gun_fight.webm")
-        play music "musics/mii.mp3" fadein 1.0 volume 0.3
         scene bg gun_fight_end
         show r happy at left_unzoomed
         n "Il regarde là où ils étaient, petit sourire."
@@ -928,7 +906,27 @@ label scene_6a_d5:
         r "les nulos."
         jump scene_7
     else:
-        jump death_screen
+        $ quick_menu = False
+        $ _rollback = False
+        play music "musics/gun_theme.mp3" fadein 1.0 volume 0.8
+        $minigame_result = renpy.call_screen("shooter_minigame")
+        $ quick_menu = True
+        $ _rollback = True
+
+
+        if minigame_result == "win":
+            pause 0.1    
+            stop music fadeout 1.0
+            $ renpy.movie_cutscene("videos/gun_fight.webm")
+            play music "musics/mii.mp3" fadein 1.0 volume 0.3
+            scene bg gun_fight_end
+            show r happy at left_unzoomed
+            n "Il regarde là où ils étaient, petit sourire."
+            r "Hasta la vista…"
+            r "les nulos."
+            jump scene_7
+        else:
+            jump death_screen
 
 
 # =========================================================
@@ -1457,13 +1455,13 @@ label scene_8_e1:
 
     scene bg q2_freeze
 
-    n "Babaji or XBoxX"
+    n "Babaji or XboxeXeXeXeX"
 
     menu:
         "Babaji":
             $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
-        "XBoxX":
+        "XboxeXeXeXeX":
             play sound "audio/gui/correct.mp3"
             pass
             
