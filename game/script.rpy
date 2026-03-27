@@ -250,8 +250,10 @@ label scene_1a:
     hide r happy
     hide bg bedroom
     scene bg lego
+    play sound "audio/character/snoring.mp3"
     n "Ton pied rencontre un LEGO."
     n "Tu as mal."
+    stop sound
     hide bg lego
     scene bg bedroom
     show r happy at left_unzoomed
@@ -461,8 +463,11 @@ label scene_2a:
     show r happy at left_unzoomed
 
     n "Ton patron tombe avec sa chaise près de la vitre."
+    play sound "audio/character/scream.mp3" volume 2
+    pause 1
     n "Les collègues crient."
     n "Tu souris intérieurement."
+    stop sound
 
     n "Tu quittes le bureau."
 
@@ -660,7 +665,7 @@ label scene_6b_d2:
     n "Tu décides (vue que tu as la dalle énorme) d’aller dans un très bon restaurant italien (alors que tu es Japon)."
     n "Ce restaurant a 4 Etoiles Michelin et ils servent des plats exceptionnels."
     n "Alors c’est décidé, tu vas dans ce restaurant car tu es BLINDééééééééééé !"
-    n "On t’a apporté la carte des plats mais tu sais déjà quel prendre. Car sur la carte c’est ecrit, Pizza of the season."
+    n "On t’a apporté la carte des plats mais tu sais déjà celle que tu vas prendre. Car sur la carte c’est écrit, Pizza of the season."
     n "Alors tu commandes cette pizza. Et pour la boisson, tu demandes au restaurant, une suprise parmi la selection exclusive que le restaurant possède."
     n "5 min après..."
     n "Tu vois une énorme assiette."
@@ -674,7 +679,7 @@ label scene_6b_d2:
     hide f
 
     n "Et là…"
-
+    play sound "audio/character/what.mp3"
     show drink at truecenter
     pause 3
     hide drink
@@ -682,6 +687,7 @@ label scene_6b_d2:
     show pizza at truecenter
     pause 3
     hide pizza
+    stop sound
 
     n "Etonnement (en fait tu es bizarre), tu kiffes ce que tu vois et entame ce festin."
     n "1 min après..."
@@ -690,15 +696,18 @@ label scene_6b_d2:
     f "Alors Monsieur, tout se passe à merv……"
     n "Le serveur n’a pas le temps de finir sa phrase que tu as tout mangé et apprécie la fin de ta boisson (frérot tu es bizarre)."
     r "C’était délicieux, je veux bien l’addition svp"
-    n "Le serveur émerveillé par ce qu’il a vu, part et te ramene l’addition. "
+    n "Le serveur émerveillé par ce qu’il a vu, part et te ramène l’addition. "
 
     hide f
     pause 1
     show f normal at right_unzoomed
 
     n "Et là ……     108230,40 Yen Japonais"
+    play sound "audio/object/applepay.mp3"
     n "Mais tellement que tu es blindax, tu poses ta petite carte American Express Platium Pro Max Worldwide Obama Certified Edition et bim ça valide le paiement."
     f "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
+
+    stop sound
 
     hide r
     hide f
@@ -724,7 +733,9 @@ label scene_6a_d1:
     n "Tu décides d’aller à ton bar préféré. "
 
     scene bg bar
-    show r happy at left_unzoomed
+    show r happy at left_unzoomed 
+    stop music
+    play music "musics/bar.mp3" fadein 1.0 volume 0.8
  
     r "J’ai besoin d’une bonne bière après ce que j’ai vu !"
     
@@ -746,7 +757,7 @@ label scene_6a_d3:
     show rh normal at right_unzoomed
     with moveinright
 
-    n "Comme tu as de l’alcool dans le sang, donc tu vas parler avec elle."
+    n "Comme tu as de l’alcool dans le sang, tu vas parler avec elle."
 
     r "J’en suis à un stade où la musique me regarde de travers."
     
@@ -760,6 +771,9 @@ label scene_6a_d3:
 
     rh "Viens avant que tu dises une connerie de plus."
     n "Tu discutes avec elle et après 2 chopes de bières (boire avec modération), vous sortez du bar et vous dirigez chez la RH."
+    stop music fadeout 1.0
+    
+    play music "musics/mii.mp3" fadein 1.0 volume 0.3
     scene bg street
     with fade
     n "Vous marchez et rigolez"
@@ -800,33 +814,30 @@ label scene_6a_d3:
     n "Une des voitures se prend le poteau (le gros nul)."
     n "Le poteau se renvers."
 
-    n "Esquivez vite le poteau !"
-
     if is_mobile:
         pass
     else:
+        n "Esquivez vite le poteau !"
         $ qte_time = 3.0
         $ result = renpy.call_screen("qte_bar")
         if result:
             n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
+            
         else:
+            $ renpy.movie_cutscene("videos/Jennifer-camion_fin.webm") 
             jump death_screen
-
-    # S’il reussi à esquiver :
-
-    n "Bravo tu as réussi à esquiver le poteau mais, Jennifer n’a pas eu cette même chance"
 
     hide bg jennifer_camion
     # --- Lecture de la vidéo plein écran ---
-    $ renpy.movie_cutscene("videos/Jennifer-camion_fin.webm") 
+    $ renpy.movie_cutscene("videos/Jennifer-camion_ndead.webm") 
 
     scene bg street
     with fade
     show r happy at left_unzoomed
     with moveinleft
-    n "Jennifer à été slimed par les ops"
+    n "Jennifer a été slimed par les ops"
 
-    n "Rempli de haine car ils ont ruiné ta date tu cours vers le camion militaire pour t’armer, et te venger sur les responsables de cet accident"
+    n "Rempli de haine car ils ont ruiné ton date tu cours vers le camion militaire pour t’armer, et te venger sur les responsables de cet accident"
 
     n "Le conducteur du camion est mort sur impact mais ils a des armes dans le cabinet"
 
@@ -1037,7 +1048,7 @@ label scene_6b_d5:
 label scene_6b_d5_1:
     scene black
 
-    n "Tu tournes les talons et sprintes comme un dératé."
+    n "Tu tournes les talons et sprintes comme un déjanté."
     r "VIE SAUVE !"
     n "Tu cours 10 mètres."
 
@@ -1465,13 +1476,13 @@ label scene_8_e1:
 
     scene bg q2_freeze
 
-    n "Babaji or XboxeXeXeXeX"
+    n "Babaji or Xbox seriz eXeXeXeX"
 
     menu:
         "Babaji":
             $ renpy.movie_cutscene("videos/claque.webm") 
             jump death_screen
-        "XboxeXeXeXeX":
+        "Xbox seriz eXeXeXeX":
             play sound "audio/gui/correct.mp3"
             pass
             
@@ -1483,13 +1494,13 @@ label scene_8_e1:
 
     scene bg q3_freeze
 
-    n "balahstation5 or XboxeXeXeXeX"
+    n "balahstation5 or Xbox seriz eXeXeXeX"
 
     menu:
         "balahstation5":
             play sound "audio/gui/correct.mp3"
             pass
-        "XboxeXeXeXeX":
+        "Xbox seriz eXeXeXeX":
             play sound "audio/gui/correct.mp3"
             pass
     # =========================
@@ -1545,7 +1556,7 @@ label scene_9:
     n "Tu rentres enfin chez toi après cette journée chaotique mais enrichissante." 
     scene bg opened_door
     with fade
-    n "Tu arrives ta porte mais tu vois qu’elle est ouverte."
+    n "Tu arrives à ta porte mais tu vois qu’elle est ouverte."
     r "Wesh, sérieusement ????????"
     scene bg inside_door
     with fade
@@ -1566,7 +1577,7 @@ label scene_9:
     n "Il sort de l’ombre et……. "
     r "Hector………. ????"
     show h normal at right_unzoomed
-    h "Désolé mon viel ami, mais tu as trahis l’organisation. Je vais faire ça rapidement."
+    h "Désolé mon vieil ami, mais tu as trahis l’organisation. Je vais faire ça rapidement."
     r "l’organisation te mens et t’utilise Hector. Ils veulent juste la formula secrète de m.crabs et après ils vont juste te marabouter"
     h "M’en fou on me paye assez bien….. en pesos"
     r "Hector. Tu ne sais même pas compter jusqu’à 10, il te paye 11 pesos et te dise que c’est beaucoup"
