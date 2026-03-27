@@ -865,7 +865,9 @@ label scene_6a_d4:
     r "⎓╎∷ᒷ ᔑᓭ! ᒲᔑᓭℸ ̣ ᒷ∷ ᒷリᓵ⍑ᔑリℸ ̣ !"
     rh "Tu te fous de ma—"
     r "ᒷ! ᒷ! ᓭ╎ꖎꖌ ℸ ̣ 𝙹⚍ᓵ⍑! "
+    play sound "audio/character/claque.mp3"
     n "CLAQUE."
+    stop sound
     hide rh
     r "…ᒷ⍊ᔑᓭ╎𝙹リ ꖎᒷ⍊ᒷꖎ 0."
     n "Là tu t’es pris un râteau de l’espace par Jennifer."
