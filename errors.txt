@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/boss_fight.rpy", line 92: expected an indented block after function definition on line 22
-    global potions_hp, potions_mp, baboushka_used, unlock_baboushka
-        ^^^^^^
+File "game/boss_fight.rpy", line 52: invalid syntax. Perhaps you forgot a comma?
+    {"name": "Baboushka","mp":0 "power" : 200,"desc": "Son pouvoir vous éblouit mais vous ne pouvez l'utiliser qu'une seule fois.\nDMG:200", "baboushka": True, "image": "images/baboushka.png"},\
+                              ^^^^^^^^^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Thu Mar 26 10:48:43 2026
+Fri Mar 27 13:56:48 2026

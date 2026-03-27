@@ -40,7 +40,7 @@ default player_config = {
 
 default boss_config = {
     "name": "HECTOR", 
-    "max_hp": 600,
+    "max_hp": 1000,
     "max_mp": 150,
     "atk": 35,
     "defense": 18,
@@ -49,7 +49,7 @@ default boss_config = {
 
 default player_spells = [
     {"name": "Soufflet de Don Gomes", "mp": 0, "power": 100,"desc": "Gros soufflet physique.\nDMG:100", "image": "images/soufflet.png"},
-    {"name": "Baboushka", "mp": 30,"power" : 200,"desc": "Son pouvoir vous éblouit mais vous ne pouvez l'utiliser qu'une seule fois.\nDMG:200", "baboushka": True, "image": "images/baboushka.png"},
+    {"name": "Baboushka","mp":0, "power" : 250,"desc": "Son pouvoir vous éblouit mais vous ne pouvez l'utiliser qu'une seule fois.\nDMG:250", "baboushka": True, "image": "images/baboushka.png"},
     {"name": "Claque du daron", "mp": 15, "power": 150,"desc": "Le pouvoir du daron coule dans vos veines.\nDMG:150\nPM:15", "image": "images/main.png"},
     {"name": "Poubelle d'Hector", "mp": 40, "heal": 40,"desc": "Manger ces déchets vous guéri étrangement.\nPV:40\nPM:40", "image": "images/poubelle.png"},
     {"name": "Potion HP", "potions": "hp","desc": "Redbull donne des ailes.\nPV:100", "image": "images/redbull.png"},
@@ -105,10 +105,10 @@ init python:
             
             if player_stats.get("mp", 0) >= spell_data["mp"]:
                 player_stats["mp"] -= spell_data["mp"]
-                damage = int(boss_config["max_hp"] * 0.25)
+                damage = spell_data["power"]
                 boss_stats["hp"] -= damage
                 baboushka_used = True
-                add_log("{} utilise BABOUSHKA !!! [{} dégâts - 25% HP]".format(player_config["name"], damage))
+                add_log("{} utilise BABOUSHKA !!!".format(player_config["name"], damage))
                 return True
             else:
                 add_log("Pas assez de PM pour Baboushka!")

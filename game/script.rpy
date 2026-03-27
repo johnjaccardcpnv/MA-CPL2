@@ -221,7 +221,10 @@ label start:
     n "Ton téléphone vibre."
     play sound "audio/object/notification.wav" volume 0.5
     n "3 notifications."
+    stop sound
     play sound "audio/character/gargouillement.mp3"
+    pause 1
+    stop sound
     n "Ton estomac gargouille."
     n "Tu es en retard… quelque part."
 
@@ -302,6 +305,8 @@ label scene_1c:
     n "Une vidéo."
     play sound "audio/object/video.mp3" volume 0.3
     n "Puis une autre."
+    pause 1.5
+    stop sound
     n "Puis 8h35."
     n "Ton cerveau : “Ça va passer.”"
     n "La réalité : “Non.”"
@@ -340,11 +345,13 @@ label scene_2c_b3:
     show j normal at right_unzoomed
     with moveinright
 
+    stop sound
     n "Un homme cagoulé et armé entre."
 
     play sound "audio/character/glissade.mp3"
 
     n "Tu glisses."
+    stop sound
     n "Trop tard."
     
     jump death_screen
@@ -970,14 +977,14 @@ label scene_6b_d3:
 
     n "Tu décides d’aller à droite et tu tombes sur cette magnifique rue nommé Shinjuwan."
 
-    hide bg right_street
     scene bg right_far
+    with fade
 
     n "Tu marches un petit moment et tu arrives dans cette street market vraiment sympa."
 
     hide r
-    hide bg right_far
     scene bg street_market
+    with fade
 
     n "Et tu te retrouves devant un street market qui vend des fruits issue du Mont Fuji (mais version Temu)."
     n "Tu te fais accoster par la baboushka qui te demande : "
@@ -1141,7 +1148,6 @@ label scene_6b_d6:
 # Acheter un fruit
 # =========================================================
 label scene_6b_d7:
-    #wip
     scene bg street_market
     show r happy at left_unzoomed
     show b happy at right_unzoomed
@@ -1227,6 +1233,7 @@ label scene_8_e3:
 
     play sound "audio/object/pelleteuse.mp3" volume 0.5
     n "GRRRRRRRRR (bruit pelleteuse)"
+    stop sound
 
     r "Ok. Là c’est plus une faim, c’est une alerte nucléaire."
 
@@ -1368,6 +1375,7 @@ label scene_8_e2:
     pause 6
     hide max_dead
     n "Il meurt."
+    stop sound
     n "Long silence."
     r "…bon."
     r "Ça c’est arrivé."
@@ -1383,7 +1391,9 @@ label scene_8_e2:
     # --- Lecture de la vidéo plein écran ---
     $ renpy.movie_cutscene("videos/GP_1.webm") 
 
+    stop music
     scene bg GP_choice1
+
 
     menu:
         "Rester en position":
@@ -1530,6 +1540,7 @@ label scene_8_e1:
 label scene_9:
     scene bg street_night
     with fade
+    play music "musics/mii.mp3" fadein 1.0 volume 0.3
     show r happy at left_unzoomed
     n "Tu rentres enfin chez toi après cette journée chaotique mais enrichissante." 
     scene bg opened_door
