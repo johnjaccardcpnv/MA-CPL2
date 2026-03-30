@@ -1628,7 +1628,7 @@ label scene_10:
     stop sound
     n "Tu la regardes."
     n "Silence."
-    n "Puis elle lâche :"
+    n "Puis elle lâche"
     megan "Ok… soit t’es un super-héros… soit t’as mangé trop de protéines."
     hide r happy
     play sound "audio/character/fah.mp3"
@@ -1643,7 +1643,7 @@ label scene_10:
     n "Tu lui mets une petite pichenette."
     n "Il disparaît."
     hide h plat
-    n "Elle te regarde encore plus impressionnée :"
+    n "Elle te regarde encore plus impressionnée"
     megan "Bon… j’annule mes plans. On sort."
     scene bg plage
     with fade
