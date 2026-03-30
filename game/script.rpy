@@ -16,6 +16,7 @@ define chef = Character("Chef", color="#a5a2a2", what_prefix="“", what_suffix=
 define Max = Character("Max Verstappen", color="#f3e303", what_prefix="“", what_suffix="”")
 define y = Character("Yi-Long Ma", color="#69641b", what_prefix="“", what_suffix="”")
 define hm = Character("Homme mystérieux")
+define megan = Character("Megan", color="#ff69b4", what_prefix="“", what_suffix="”")
 
 
 default qte_time = 3.0
@@ -35,6 +36,7 @@ image r tel = "images/ren_tel.png"
 image r savon = "images/ren_savon.png"
 image r gun = "images/ren_gun_nobg.png"
 image r GP = "images/ren_gp.png"
+image r muscle = "images/ren_muscle.png"
 
 image t normal = "images/receptionniste.png"
 
@@ -49,6 +51,7 @@ image f normal = "images/francesco.png"
 image h trash = "images/hector_w_trash.png"
 image h normal = "images/hector_debout.png"
 image h explose = "images/hector_explosion.png"
+image h plat = "images/hector_plat.png"
 
 image rh normal = "images/jennifer_pants.png"
 image rh choc = "images/jennifer_choc.png"
@@ -62,6 +65,8 @@ image Max happy = "images/max.png"
 image b cut = "images/baboushka_cut.png"
 
 image y normal = "images/yi-long-ma.png"
+
+image megan normal = "images/megan.png"
  
 
 # Backgrounds
@@ -112,6 +117,9 @@ image bg inside_door = "images/home_fight.png"
 
 image bg death = "images/death.jpg"
 
+image bg plage = "images/plage.png"
+image bg plage_juan = "images/plage_juan.png"
+
 transform breathing:
     xalign 0.0
     yalign 1.0
@@ -126,6 +134,11 @@ transform left_unzoomed:
     yalign 1.0
     zoom 2
 
+transform left_unzoomed_more:
+    xalign 0.0
+    yalign 1.0
+    zoom 1.5
+
 
 transform right_zoomed:
     xalign 1.0
@@ -136,6 +149,11 @@ transform right_unzoomed:
     xalign 1.0
     yalign 1.0
     zoom 2
+
+transform right_unzoomed_more:
+    xalign 1.0
+    yalign 1.0
+    zoom 1.5
 
 transform right_far:
     xalign 1.0
@@ -236,7 +254,7 @@ label start:
         "Regarder ton téléphone":
             jump scene_1c
         "Tests uniquement - directement au soir":
-            jump scene_7
+            jump scene_10
         
 
 
@@ -1549,7 +1567,6 @@ label scene_8_e1:
 # =========================================================
 # Retour à la maison (DUEL HECTOR)
 # =========================================================
-
 label scene_9:
     scene bg street_night
     with fade
@@ -1594,5 +1611,66 @@ label scene_9:
     r "Oue…"
     jump boss_final
 
-    
+# =========================================================
+# Fin
+# =========================================================
+label scene_10:
+    scene bg inside_door
+    with fade
+    show r happy at left_unzoomed
+    show h plat at truecenter
+    with moveinbottom
+    n "Après que tu as gagné ce combat aberrant, ta voisine débarque, attirée par le bruit digne d’un tremblement de terre (et par le fait que t’as littéralement transformé Hector en crêpe)."
+    n "À ta grande surprise… c’est Megan Fox."
+    play sound "audio/character/megan.mp3"
+    show megan normal at right_unzoomed_more
+    n "Elle te regarde."
+    stop sound
+    n "Tu la regardes."
+    n "Silence."
+    n "Puis elle lâche :"
+    megan "Ok… soit t’es un super-héros… soit t’as mangé trop de protéines."
+    hide r happy
+    play sound "audio/character/fah.mp3"
+    show r muscle at left_unzoomed_more
+    pause 2.0
+    hide r muscle
+    stop sound
+    show r happy at left_unzoomed
+    n "Tu souris, tu flex un peu (juste assez pour faire trembler les murs)."
+    n "Elle est impressionnée. Genre VRAIMENT impressionnée."
+    n "Le monstre derrière toi essaie de se relever…"
+    n "Tu lui mets une petite pichenette."
+    n "Il disparaît."
+    hide h plat
+    n "Elle te regarde encore plus impressionnée :"
+    megan "Bon… j’annule mes plans. On sort."
+    scene bg plage
+    with fade
+    show r happy at left_unzoomed
+    show megan normal at right_unzoomed_more
+    n "Vous êtes tous les deux sur la plage, coucher de soleil, ambiance romantique…"
+    n "Mais…"
+    n "Toi, t’es en train de faire des pompes dans le sable."
+    n "Elle te regarde, à moitié fascinée, à moitié inquiète."
+    n "Un cheval passe derrière vous…"
+    scene bg plage_juan
+    show r happy at left_unzoomed
+    show megan normal at right_unzoomed_more
+    n "Et reste immobile face à la mer."
+    n "Tu t’arrêtes, tu regardes le cheval."
+    r "Lui aussi… il a vu ce combat. Il réfléchit encore."
+    n "Elle éclate de rire."
+    n "Elle s’approche, te prend le bras"
+    megan "Bon… t’es bizarre… mais j’aime bien."
+    r "Attends de voir quand je cours."
+    n "Tu pars en sprint…"
+    hide r muscle
+    with moveinleft
+    pause 3.0
+    show r happy at left_unzoomed
+    with moveinright
+    n "…et tu reviens 3 secondes plus tard avec une glace."
+    megan "Ok, je t’épouse."
+    n "(Le cheval n’a toujours pas bougé.)"
 
