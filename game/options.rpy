@@ -242,3 +242,5 @@ init python:
 
     # Rebinder sur une autre touche, par exemple F12
     config.keymap['screenshot'].append('K_F12')
+
+    config.main_menu_music = "musics/menu_music.mp3"

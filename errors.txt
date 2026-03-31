@@ -2,9 +2,33 @@
 errors listed below, and try again.
 
 
-File "game/boss_fight.rpy", line 52: invalid syntax. Perhaps you forgot a comma?
-    {"name": "Baboushka","mp":0 "power" : 200,"desc": "Son pouvoir vous éblouit mais vous ne pouvez l'utiliser qu'une seule fois.\nDMG:200", "baboushka": True, "image": "images/baboushka.png"},\
-                              ^^^^^^^^^
+File "game/boss_fight.rpy", line 317: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 324: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 335: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 345: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 353: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 372: end of line expected.
+    hide screen tooltip_display()
+                               ^
+
+File "game/boss_fight.rpy", line 379: end of line expected.
+    hide screen tooltip_display()
+                               ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Fri Mar 27 13:56:48 2026
+Tue Mar 31 08:31:09 2026

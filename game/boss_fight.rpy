@@ -1,10 +1,9 @@
-# Made from Habitacle - https://github.com/Habitacle/battle-engine
+# Made from Habitacle - [https://github.com/Habitacle/battle-engine](https://github.com/Habitacle/battle-engine)
 
 # écran pour lancer le jeu
 label boss_final:
     "Un Hector sauvage apparait !"
     
-    # CORRECT - Sans le $ et sans parentheses
     call boss_combat(player_hp=150) from _call_boss_combat
     
     if result == "win":
@@ -27,7 +26,6 @@ default baboushka_used = False
 default spell_tooltip = ""
 default spell_tooltip_x = 0.0
 default spell_tooltip_y = 0.0
-
 
 default player_config = {
     "name": "REN",
@@ -108,7 +106,7 @@ init python:
                 damage = spell_data["power"]
                 boss_stats["hp"] -= damage
                 baboushka_used = True
-                add_log("{} utilise BABOUSHKA !!!".format(player_config["name"], damage))
+                add_log("{} utilise BABOUSHKA !!!".format(player_config["name"]))
                 return True
             else:
                 add_log("Pas assez de PM pour Baboushka!")
@@ -133,7 +131,7 @@ init python:
                 return False
 
         # SORTS NORMAUX (avec MP)
-        if player_stats.get("mp", 0) >= spell_data.get("mp", 0):  # .get("mp", 0) au cas où
+        if player_stats.get("mp", 0) >= spell_data.get("mp", 0):
             player_stats["mp"] -= spell_data.get("mp", 0)
             if "heal" in spell_data:
                 heal = min(spell_data["heal"], player_config["max_hp"] - get_hp_display(player_stats))
@@ -198,7 +196,6 @@ screen player_menu():
             hbox spacing 30 xalign 0.5:
                 for i in range(4):
                     $ spell = player_spells[i]
-                    # Cache Baboushka si pas débloquée OU déjà utilisée
                     if spell.get("baboushka") and (unlock_baboushka == 0 or baboushka_used):
                         continue
                     button:
@@ -207,8 +204,8 @@ screen player_menu():
                         hover_background "#44ff44aa"
                         hovered [
                             SetVariable("spell_tooltip", spell.get("desc", "")),
-                            SetVariable("spell_tooltip_x", 450 +  i * 210 + 90),  # centre du bouton
-                            SetVariable("spell_tooltip_y", 550 + 160)              # milieu vertical du bouton
+                            SetVariable("spell_tooltip_x", 450 + i * 210 + 90),
+                            SetVariable("spell_tooltip_y", 550 + 160)
                         ]
                         unhovered SetVariable("spell_tooltip", "")
                         vbox xalign 0.5 spacing 6:
@@ -227,27 +224,26 @@ screen player_menu():
                     background Frame("blank", 10, 10)
                     hover_background "#44ff44aa"
                     hovered [
-                    SetVariable("spell_tooltip", player_spells[4].get("desc", "")),
-                    SetVariable("spell_tooltip_x", 450 + 0 * 210 + 90),
-                    SetVariable("spell_tooltip_y", 550 + 340)   # rangée du bas
+                        SetVariable("spell_tooltip", player_spells[4].get("desc", "")),
+                        SetVariable("spell_tooltip_x", 450 + 0 * 210 + 90),
+                        SetVariable("spell_tooltip_y", 550 + 340)
                     ]
                     unhovered SetVariable("spell_tooltip", "")
-                    tooltip player_spells[4].get("desc", "")
                     vbox xalign 0.5 spacing 10:
                         fixed:
                             xsize 100 ysize 100
                             add player_spells[4]["image"] xalign 0.5 yalign 0.5
                         text "Potion HP\n(x[potions_hp])" size 18 bold True xalign 0.5 color "#ffffff"
                     action If(potions_hp > 0, Function(player_turn, 4), NullAction())
+                    
                 button:
                     xsize 180 ysize 160
                     background Frame("blank", 10, 10)
                     hover_background "#44ff44aa"
-                    tooltip player_spells[5].get("desc", "")
                     hovered [
-                    SetVariable("spell_tooltip", player_spells[5].get("desc", "")),
-                    SetVariable("spell_tooltip_x", 450 + 1 * 210 + 90),
-                    SetVariable("spell_tooltip_y", 550 + 340)
+                        SetVariable("spell_tooltip", player_spells[5].get("desc", "")),
+                        SetVariable("spell_tooltip_x", 450 + 1 * 210 + 90),
+                        SetVariable("spell_tooltip_y", 550 + 340)
                     ]
                     unhovered SetVariable("spell_tooltip", "")
                     vbox xalign 0.5 spacing 10:
@@ -256,15 +252,15 @@ screen player_menu():
                             add player_spells[5]["image"] xalign 0.5 yalign 0.5
                         text "Potion PM\n(x[potions_mp])" size 18 bold True xalign 0.5 color "#ffffff"
                     action If(potions_mp > 0, Function(player_turn, 5), NullAction())
+                    
                 button:
                     xsize 180 ysize 160
                     background Frame("blank", 10, 10)
                     hover_background "#ff4444aa"
-                    tooltip player_spells[6].get("desc", "")
                     hovered [
-                    SetVariable("spell_tooltip", player_spells[6].get("desc", "")),
-                    SetVariable("spell_tooltip_x", 450 + 2 * 210 + 90),
-                    SetVariable("spell_tooltip_y", 550 + 340)
+                        SetVariable("spell_tooltip", player_spells[6].get("desc", "")),
+                        SetVariable("spell_tooltip_x", 450 + 2 * 210 + 90),
+                        SetVariable("spell_tooltip_y", 550 + 340)
                     ]
                     unhovered SetVariable("spell_tooltip", "")
                     vbox xalign 0.5 spacing 10:
@@ -274,22 +270,24 @@ screen player_menu():
                         text "Fuir" size 20 bold True xalign 0.5 color "#ff4444"
                     action Return("flee")
 
-screen boss_turn_menu():
-    modal True
-    use combat_ui()
-    timer 0.8 action Return(None)
-
-screen spell_tooltip_box():
+screen tooltip_display():
     zorder 200
     if spell_tooltip:
         frame:
             xpos spell_tooltip_x
-            ypos spell_tooltip_y - 80    # 80 px au‑dessus, ajuste si besoin
+            ypos spell_tooltip_y - 80
             xanchor 0.5
             yanchor 1.0
             background "#000000cc"
             padding (8, 6)
             text spell_tooltip size 18 color "#ffffff" xmaximum 260
+
+screen boss_turn_menu():
+    modal True
+    use combat_ui()
+    use tooltip_display()
+    timer 0.8 action Return(None)
+
 # =====================================================
 label boss_combat(player_hp=150):
     play music "musics/battle_song.mp3" loop
@@ -299,8 +297,8 @@ label boss_combat(player_hp=150):
     $ player_stats = {"hp": player_hp, "mp": player_config["max_mp"]}
     $ boss_stats = {"hp": boss_config["max_hp"], "mp": boss_config["max_mp"]}
     $ combat_log = []
+    $ spell_tooltip = ""
     
-    # LOGS DÉBUT COMBAT
     $ duel_msg = "Duel: {} VS {}!".format(player_config["name"], boss_config["name"])
     $ add_log(duel_msg)
     $ start_msg = "{} attaque en premier!".format(player_config["name"])
@@ -308,18 +306,22 @@ label boss_combat(player_hp=150):
     
     scene bg_combat
     show screen combat_ui()
-    show screen spell_tooltip_box
+    show screen tooltip_display()
     
     label .combat_loop:
         $ result = check_game_over()
         if result == "lose":
             $ game_over_msg = "GAME OVER - {} a été vaincu par {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[game_over_msg]"
             return "lose"
         if result == "win":
             $ victory_msg = "VICTOIRE! {} terrasse {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[victory_msg]"
             return "win"
         
@@ -328,28 +330,28 @@ label boss_combat(player_hp=150):
         if _return == "flee":
             stop music fadeout 1.0
             $ flee_msg = "{} fuit le combat!".format(player_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[flee_msg]"
-            hide bg_combat
-            hide combat_ui
             return "flee"
         
         $ result = check_game_over()
         if result == "lose":
             stop music fadeout 1.0
             $ game_over_msg = "GAME OVER - {} a été vaincu par {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[game_over_msg]"
-            hide bg_combat
-            hide combat_ui
             return "lose"
         if result == "win":
             stop music fadeout 1.0
             $ victory_msg = "VICTOIRE! {} terrasse {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[victory_msg]"
-            hide bg_combat
-            hide combat_ui
             return "win"
         
         pause 0.3
@@ -365,12 +367,16 @@ label boss_combat(player_hp=150):
         $ result = check_game_over()
         if result == "lose":
             $ game_over_msg = "GAME OVER - {} a été vaincu par {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[game_over_msg]"
             return "lose"
         if result == "win":
             $ victory_msg = "VICTOIRE! {} terrasse {}!".format(player_config["name"], boss_config["name"])
+            $ spell_tooltip = ""
             hide screen combat_ui
+            hide screen tooltip_display
             "[victory_msg]"
             return "win"
         

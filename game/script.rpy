@@ -1343,9 +1343,11 @@ label scene_8_e2:
     n "Tu t’approches."
 
     r "Eh… ça va ?"
+    play sound "audio/object/tutututu.mp3" volume 0.8
     show Max happy at right_unzoomed
     n "Le gars relève la tête."
     n "C’est Max Verstappen !"
+    stop sound
 
     r "…non."
     r "Non non non."
@@ -1447,7 +1449,6 @@ label scene_8_e1:
     show r happy at left_unzoomed
     n "Bonne idée."
     n "Vu la journée que tu viens de vivre…"
-    n "(et que Jennifer est… plus vraiment disponible)"
     n "tu décides de rentrer chez toi."
     n "La nuit tombe sur Tokyo."
     n "Les néons s’allument."
@@ -1673,4 +1674,19 @@ label scene_10:
     n "…et tu reviens 3 secondes plus tard avec une glace."
     megan "Ok, je t’épouse."
     n "(Le cheval n’a toujours pas bougé.)"
+    scene black
+    with fade
+    $ quick_menu = False
+    $ _rollback = False
+    $ config.allow_skipping = False
+    $ _dismiss_pause = False
+    
+    show expression Movie(play="videos/Absolute_cinema.webm", loop=False) as video
+    $ renpy.pause(10.0, hard=True)
+    hide video
+    pause 0.5
+    
+    show expression Movie(play="videos/credits.webm", loop=False) as video_end
+    $ renpy.pause(72.0, hard=True)
+    hide video_end
 
