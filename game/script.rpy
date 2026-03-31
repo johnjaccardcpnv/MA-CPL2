@@ -1619,6 +1619,7 @@ label scene_10:
     show r happy at left_unzoomed
     show h plat at truecenter
     with moveinbottom
+    play music "musics/mii.mp3" fadein 1.0 volume 0.3
     n "Après que tu as gagné ce combat aberrant, ta voisine débarque, attirée par le bruit digne d’un tremblement de terre (et par le fait que t’as littéralement transformé Hector en crêpe)."
     n "À ta grande surprise… c’est Megan Fox."
     play sound "audio/character/megan.mp3"
