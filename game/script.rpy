@@ -669,15 +669,16 @@ label scene_5:
         "Aller à ton bar préféré":
             jump scene_6a_d1
         "Aller dans un restaurant italien":
+            stop music fadeout 1.0
             jump scene_6b_d2
 
 # =========================================================
 # Restaurant
 # =========================================================
 label scene_6b_d2:
-
     scene bg restaurant
     show r happy at left_unzoomed
+    play music "musics/italien.mp3" fadein 1.0 volume 0.4
     n "Tu décides (vue que tu as la dalle énorme) d’aller dans un très bon restaurant italien (alors que tu es Japon)."
     n "Ce restaurant a 4 Etoiles Michelin et ils servent des plats exceptionnels."
     n "Alors c’est décidé, tu vas dans ce restaurant car tu es BLINDééééééééééé !"
@@ -724,11 +725,13 @@ label scene_6b_d2:
     f "Merci beaucoup pour votre visite, bonne fin de journée et à bientôt"
 
     stop sound
+    stop music fadeout 1.0
 
     hide r
     hide f
     show r happy at truecenter
     show bg outdoor_restaurant
+    play music "musics/mii.mp3" fadein 1.0 volume 0.3
 
     n "Tu quittes ce restaurant avec un ventre rempli et un sourire qui pointe vers le ciel."
     n "Tu décides maintenant de prendre le chemin :"
@@ -1277,8 +1280,10 @@ label scene_8_e3:
     show r happy at left_unzoomed
 
     n "Tu rentres."
+    stop music fadeout 1.0
     scene bg ramen_legend_inside
     show r happy at left_unzoomed
+    play music "musics/ramen.mp3" fadein 1.0 volume 0.4
 
     n "Le resto est vide."
     n "Un seul client."
@@ -1312,6 +1317,7 @@ label scene_8_e3:
     r "Hmmm… c’est pas ma…"
 
     n "Tu as une envie pressante d’aller aux toilettes."
+    stop music fadeout 1.0
 
     # Fond noir pour que rien ne cache la vidéo
     scene black
@@ -1641,14 +1647,18 @@ label scene_10:
     n "Elle est impressionnée. Genre VRAIMENT impressionnée."
     n "Le monstre derrière toi essaie de se relever…"
     n "Tu lui mets une petite pichenette."
+    play sound "audio/character/disappear.mp3"
     n "Il disparaît."
     hide h plat
+    stop sound
     n "Elle te regarde encore plus impressionnée"
     megan "Bon… j’annule mes plans. On sort."
+    stop music fadeout 1.0
     scene bg plage
     with fade
     show r happy at left_unzoomed
     show megan normal at right_unzoomed_more
+    play music "musics/plage.mp3" fadein 1.0 volume 0.5
     n "Vous êtes tous les deux sur la plage, coucher de soleil, ambiance romantique…"
     n "Mais…"
     n "Toi, t’es en train de faire des pompes dans le sable."
