@@ -253,8 +253,6 @@ label start:
             jump scene_1b
         "Regarder ton téléphone":
             jump scene_1c
-        "Tests uniquement - directement au soir":
-            jump scene_10
         
 
 
