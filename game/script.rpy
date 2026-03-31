@@ -1683,6 +1683,7 @@ label scene_10:
     n "…et tu reviens 3 secondes plus tard avec une glace."
     megan "Ok, je t’épouse."
     n "(Le cheval n’a toujours pas bougé.)"
+    stop music fadeout 1.0
     scene black
     with fade
     $ quick_menu = False
