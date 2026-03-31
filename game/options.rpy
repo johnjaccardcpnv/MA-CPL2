@@ -35,11 +35,11 @@ define gui.about = _p("""
 Créé par une magnifique équipe pendant le projet de Ma-CPL2 (CPNV),\n
 de la créativité et de l'investissement sont les maîtres mots de ce projet.\n
 Notre équipe :\n
-- John Jaccard, dev et graphiste\n
-- Judah Periyasamy, scénariste de génie\n
-- Zachary Smith, petite pute de Judah\n
-- Christophe Fonseca, le goat du projet\n
-- Ryan Bersier
+- John Jaccard, développeur et graphiste\n
+- Judah Periyasamy, scénariste et monteur cinématique\n
+- Zachary Smith, scénariste et grand conseiller\n
+- Christophe Fonseca, graphiste et documentaliste\n
+- Ryan Bersier, dév
 """)
 
 
